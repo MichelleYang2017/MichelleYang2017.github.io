@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="7XAJS-oOL3lrJyBUDp01FyRpahnQp3a0xj4-zRXAIeU" />
+<meta name="baidu-site-verification" content="dCyUeK4OMf" />  
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.google.com//css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本系列机器学习教程不仅仅记录算法算理，还会记录算法具体实现，本篇主要是总结python的基础语法，以及python在数据分析、机器学习中常用的库，例如numpy、pandas、matplotlib。那么，接下来我就总结一下编程基础知识点吧。">
+<meta name="keywords" content="机器学习,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之python基础">
+<meta property="og:url" content="https://michelleyang2017.github.io/2018/04/23/机器学习之python基础/index.html">
+<meta property="og:site_name" content="Michelle">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本系列机器学习教程不仅仅记录算法算理，还会记录算法具体实现，本篇主要是总结python的基础语法，以及python在数据分析、机器学习中常用的库，例如numpy、pandas、matplotlib。那么，接下来我就总结一下编程基础知识点吧。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-26T11:52:56.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习之python基础">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本系列机器学习教程不仅仅记录算法算理，还会记录算法具体实现，本篇主要是总结python的基础语法，以及python在数据分析、机器学习中常用的库，例如numpy、pandas、matplotlib。那么，接下来我就总结一下编程基础知识点吧。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://michelleyang2017.github.io/2018/04/23/机器学习之python基础/"/>
+
+
+
+
+
+  <title>机器学习之python基础 | Michelle</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/MichelleYang2017"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michelle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录每一周的成长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michelleyang2017.github.io/2018/04/23/机器学习之python基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michelle Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/image.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michelle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习之python基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T21:23:57+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/23/机器学习之python基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/23/机器学习之python基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,286
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+          
+          
+		  <span>&nbsp; | &nbsp;
+          <span id="busuanzi_value_page_pv" ></span>次阅读
+          </span>    
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+   
+
+      
+      
+
+      
+        <p><font color="#2F4F4F" size="3">&ensp;&ensp;&ensp;&ensp;本系列机器学习教程不仅仅记录算法算理，还会记录算法具体实现，本篇主要是总结python的基础语法，以及python在数据分析、机器学习中常用的库，例如numpy、pandas、matplotlib。那么，接下来我就总结一下编程基础知识点吧。</font><br><a id="more"></a>  </p>
+<h2 id="python内置数据类型"><a href="#python内置数据类型" class="headerlink" title="python内置数据类型"></a>python内置数据类型</h2><h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>&ensp;&ensp;&ensp;&ensp;list实际上指一种有序的集合，list数据的数据类型可以不同，并且可以嵌套list。对于list数据类型的数据，我们可以进行的操作如下：<br>以下操作均是对list_1=[‘michelle’,’alex’,’anthony’,’linda’,’tom’]进行操作</p>
+<ul>
+<li>增<br>在列表末尾追加‘jack’元素：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_1.append(&apos;jack&apos;)</span><br></pre></td></tr></table></figure>  
+在列表指定位置插入元素：在索引号为0的位置增加一个‘lucy’元素   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_1.insert(0,&apos;lucy&apos;)</span><br></pre></td></tr></table></figure>  </li>
+<li>删<br>删除list末尾的元素：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_1.pop()</span><br></pre></td></tr></table></figure>   
+删除list指定位置(例如索引为0)的元素：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_1.pop(0)</span><br></pre></td></tr></table></figure>  </li>
+<li>改<br>修改list某个位置的元素(例如将索引号为2的元素改为‘lili’)：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_1[2]=&apos;lili&apos;</span><br></pre></td></tr></table></figure>  </li>
+<li>查<br>可以通过下角标的方式(例如查找索引号为2的数据)：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list_1[2]</span><br><span class="line">len(list_1)%查询list的长度 </span><br></pre></td></tr></table></figure>  
+</li>
+</ul>
+<h3 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h3><p>&ensp;&ensp;&ensp;&ensp;tuple和list类似，tuple不可更改，没有增加删除操作，只有查询操作。tuple用()包裹自己的元素，list用[]包裹自己的元素   </p>
+<h3 id="dictionary"><a href="#dictionary" class="headerlink" title="dictionary"></a>dictionary</h3><p>&ensp;&ensp;&ensp;&ensp;dictionary是以key-value形式存储的,键是唯一、不可变的。下面以dict_1={‘michelle’:18,’tom’:’16’,’lily’:20}为例，总结一下关于dict的常用操作：  </p>
+<ul>
+<li>增<br>向字典添加新内容的方法就是增加新的键值对：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict_1[&apos;susan&apos;]=18	#增加了新的键值对</span><br></pre></td></tr></table></figure>   </li>
+<li>删<br>删除某一个键及其所对应的值 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del dict_1[&apos;tom&apos;]	#删除&apos;tom&apos;这一条目</span><br></pre></td></tr></table></figure>   
+清空字典所有条目 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict_1.clear()	#删除&apos;tom&apos;这一条目</span><br></pre></td></tr></table></figure>   </li>
+<li>改<br>通过索引键来修改相应的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict_1[&apos;lily&apos;]=11	#修改&apos;lily&apos;这一条目</span><br></pre></td></tr></table></figure>   </li>
+<li>查<br>因为dict是以键值对形式存储，键又是唯一的，可以通过键来访问数据.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;%s&quot;%(dict_1[&apos;tom&apos;]))</span><br></pre></td></tr></table></figure>   
+若访问dict里面没有的键的值会报错。在这里介绍一下容错处理：判断键是否存在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;tom&apos; in dict_1 #若不存在，返回的是false,存在返回true </span><br><span class="line">dict_1.get(&apos;tom&apos;) #若不存在，返回的是none，存在返回键所对应的值。</span><br></pre></td></tr></table></figure>   
+</li>
+</ul>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>&ensp;&ensp;&ensp;&ensp;set和dict类似，也是一组key的集合，是无序存放的，但不存储value。由于key不能重复，所以在set中没有重复的key，即我们通常所说的集合。</p>
+<ul>
+<li>创建:通过list创建,重复元素被自动过滤<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=set([1,3,1,3,5,7])</span><br></pre></td></tr></table></figure>   </li>
+<li>增<br>增加元素的方式：add(key)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.add(9)</span><br></pre></td></tr></table></figure>  </li>
+<li>删<br>删除key的方式：remove(key)  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.remove(9)</span><br></pre></td></tr></table></figure>  
+</li>
+</ul>
+<h2 id="python三大分支结构"><a href="#python三大分支结构" class="headerlink" title="python三大分支结构"></a>python三大分支结构</h2><h3 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h3><p>&ensp;&ensp;&ensp;&ensp;顺序结构的执行顺序是从上向下，依次执行。在这里我们举一个小例子，输入用户的姓名，并输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name=input(&quot;请输入您的姓名:&quot;)</span><br><span class="line">print(&quot;%s,欢迎您！！！&quot;%(name))</span><br></pre></td></tr></table></figure></p>
+<h3 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h3><p>&ensp;&ensp;&ensp;&ensp;if….elif…..else…..<br>注意在python中选择结构没有switch…..case。<br>举个例子，判断一个人输入的年龄:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age=int(input(&quot;请输入您的年龄&quot;))#注意在python3这里，input返回的是str类型，需要强制类型转换</span><br><span class="line">if age&lt;=18:</span><br><span class="line">    print(&quot;你好，青少年&quot;)</span><br><span class="line">elif age&lt;=40:</span><br><span class="line">    print(&quot;你好，青年人&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;你好，中年人&quot;)</span><br></pre></td></tr></table></figure>  </p>
+<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h3><ol>
+<li><p>for<br>举个例子：循环输出1到10  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i in range(10):#range(10)，生成0.....9的列表</span><br><span class="line">    print(i+1)</span><br></pre></td></tr></table></figure>  
+</li>
+<li><p>while<br>举个例子：循环输出1到10  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i=1</span><br><span class="line">while i&lt;10:</span><br><span class="line">    print(&quot;i is %d&quot;%(i))</span><br><span class="line">    i=i+1</span><br></pre></td></tr></table></figure>  
+</li>
+</ol>
+<h2 id="pythonIO编程"><a href="#pythonIO编程" class="headerlink" title="pythonIO编程"></a>pythonIO编程</h2><h3 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h3><ul>
+<li>读文件<br>读写文件都有可能产生IOError，所以说，我们在打开文件读取文件内容，常用的是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;hello.txt&apos;,&apos;r&apos;) as f:	#以只读的方式打开</span><br><span class="line">    print(f.read())	#一次性读取文件的全部内容，对文件操作完之后不必再使用close。</span><br></pre></td></tr></table></figure>  
+若文件内容很大，就会占用很多资源，为保险起见，我们可以采用readlines()函数一行一行的度：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;hello.txt&apos;,&apos;r&apos;) as f:	#以只读的方式打开</span><br><span class="line">    for line in f.readlines():	#循环读取文件的每一行</span><br><span class="line">        print(line.strip())	#打印每一行</span><br></pre></td></tr></table></figure>  
+</li>
+</ul>
+<p>关于读取二进制文件，比如说图像、视频，我们可以以’rb’模式打开文件即可。</p>
+<ul>
+<li>写文件  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;hello.txt&apos;,&apos;w&apos;) as f:	#以只写的方式打开，</span><br><span class="line">    f.write(&apos;hello,world&apos;)	#若文件存在，直接覆盖(若不想覆盖可以考虑以追加&apos;a&apos;的方式在文件末尾添加)，若不存在，创建并写入</span><br></pre></td></tr></table></figure>  
+<h3 id="读写内存"><a href="#读写内存" class="headerlink" title="读写内存"></a>读写内存</h3></li>
+<li>操作str<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from io import StringIO    #导入StringIO模块</span><br><span class="line">f=StringIO()	#创建一个StringIO内存</span><br><span class="line">f.write(&apos;hello&apos;)	#在内存中写内容</span><br><span class="line">f.getvalue()	#读取文件中的内容</span><br><span class="line">f.readlines()	#一行行地读</span><br></pre></td></tr></table></figure>  </li>
+<li>操作二进制数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from io import BytesIO    #导入BytesIO模块</span><br><span class="line">f=BytesIO()	#创建一个StringIO内存,也可以用一个byte初始化</span><br><span class="line">f.write(&apos;中文&apos;.encode(&apos;utf-8&apos;))	#在内存中写内容</span><br><span class="line">f.getvalue()	#读取文件中的内容</span><br><span class="line">f.readlines()	#一行行地读</span><br></pre></td></tr></table></figure>  
+</li>
+</ul>
+<h3 id="系统函数调用"><a href="#系统函数调用" class="headerlink" title="系统函数调用"></a>系统函数调用</h3><ul>
+<li>查看系统类型  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">print(os.name)	#如果是&apos;posix&apos;，说明系统是linux、unix、mac，如果是&apos;nt&apos;,则是windows OS.</span><br></pre></td></tr></table></figure>  
+os是和操作系统相关的，在不同的OS上面，os模块所支持的函数是不同的。  </li>
+<li>查看系统变量  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">print(os.environ)	#环境变量是以键值对也就是字典形式存储，可以通过键找到相应的value</span><br></pre></td></tr></table></figure>  </li>
+<li>操作目录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">os.path.abspath(&apos;.&apos;)	#查看当前路径的绝对路径</span><br><span class="line">os.mkdir(&apos;hello&apos;)	#在当前路径下创建一个目录</span><br><span class="line">os.rm(&apos;hello&apos;)	#删除当前路径的一个目录</span><br></pre></td></tr></table></figure>  </li>
+<li>操作文件  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">os.rename(&apos;python.py&apos;,&apos;python.txt&apos;)	#重命名一个文件</span><br><span class="line">os.remove(&apos;python.txt&apos;)	#删除一个文件</span><br></pre></td></tr></table></figure>  
+</li>
+</ul>
+<h2 id="python线程和进程"><a href="#python线程和进程" class="headerlink" title="python线程和进程"></a>python线程和进程</h2><p>概念解析：<br>&ensp;&ensp;&ensp;&ensp;多任务：操作系统可以同时运行多个任务，比如说你一边在上网，一边在写文档，一边听歌，这就是多任务。操作系统是如何实现多任务的呢？操作系统是轮流让各个任务交替执行，表面上看这些任务是同时执行的，但实际上是操作系统执行速度太快了，我们感觉像是在同时执行一样。<br>&ensp;&ensp;&ensp;&ensp;进程：一个任务就是一个进程。比如说打开浏览器就是启动一个进程。<br>&ensp;&ensp;&ensp;&ensp;线程：进程内的子任务。比如说，word它可以同时进行打字、拼写检查，在一个任务内，要同时干很多事情，这些就会被称之为子任务。<br>&ensp;&ensp;&ensp;&ensp;多任务的实现方式总结来说：<br>&ensp;&ensp;&ensp;&ensp;多进程模式；多线程模式；多进程+多线程模式</p>
+<h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><p>在python中，在linux下用os模块中的fork函数即可创建一个进程，系统会自动将当前进程的资源复制了一份给子进程。windows下面没有fork调用。<br>创建一个子进程代码实现如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">print(&quot;%s start...&quot;%(os.getpid()))	#获取当前进程ID号</span><br><span class="line">pid=os.fork()	#当前进程创建子进程，返回值为0，则是子进程，返回值为非0（子进程ID号），则是父进程。</span><br><span class="line">if pid==0:</span><br><span class="line">    print(&quot;I am child process %s and my father process is %s&quot;%(os.getpid(),os.getppid()))</span><br><span class="line">else:</span><br><span class="line">    print(&quot;I am father process %s, my child process is %s&quot;%(os.getpid(),pid))</span><br></pre></td></tr></table></figure><br>创建多个子进程代码实现如下，在windows平台可以使用（跨平台）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from multiprocessing import Process 	#multiprocessing模块是跨平台版本的多进程模块。</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">def run_proc(name):</span><br><span class="line">    print(&apos;Run child process %s (%s)...&apos; % (name, os.getpid()))</span><br><span class="line"></span><br><span class="line">if __name__==&apos;__main__&apos;:	#函数入口处</span><br><span class="line">    print(&apos;Parent process %s.&apos; % os.getpid())	#获得父进程的ID号</span><br><span class="line">    p = Process(target=run_proc, args=(&apos;test&apos;,))	#创建一个子进程，子进程运行run_proc函数，args是给函数传递的参数</span><br><span class="line">    print(&apos;Child process will start.&apos;)</span><br><span class="line">    p.start()	#启动子进程</span><br><span class="line">    p.join()	#等待子进程结束</span><br><span class="line">    print(&apos;Child process end.&apos;)</span><br></pre></td></tr></table></figure><br>如果有大量的子进程需要启动，则采用进程池的方式创建。</p>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import time, threading</span><br><span class="line"></span><br><span class="line">#新线程执行的代码:</span><br><span class="line">def loop():</span><br><span class="line">    print(&apos;thread %s is running...&apos; % threading.current_thread().name)</span><br><span class="line">    n = 0</span><br><span class="line">    while n &lt; 5:</span><br><span class="line">        n = n + 1</span><br><span class="line">        print(&apos;thread %s &gt;&gt;&gt; %s&apos; % (threading.current_thread().name, n))</span><br><span class="line">        time.sleep(1)</span><br><span class="line">    print(&apos;thread %s ended.&apos; % threading.current_thread().name)</span><br><span class="line"></span><br><span class="line">print(&apos;thread %s is running...&apos; % threading.current_thread().name) #主线程</span><br><span class="line">t = threading.Thread(target=loop, name=&apos;LoopThread&apos;)#创建一个线程，名称为LoopThread</span><br><span class="line">t.start()	#线程启动</span><br><span class="line">t.join()	#等待线程结束</span><br><span class="line">print(&apos;thread %s ended.&apos; % threading.current_thread().name)</span><br></pre></td></tr></table></figure>  
+<h2 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h2><p>numpy比python原生派数据结构速度快、灵活，支持更多的数据类型。</p>
+<h3 id="创建numpy-array"><a href="#创建numpy-array" class="headerlink" title="创建numpy array"></a>创建numpy array</h3><p>一般是通过list或者是tuple来创建。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">list_1=[1,2,3,4]</span><br><span class="line">numpy_list=np.array(list_1,dtype=&apos;int&apos;)  #dtype指定了数据元素的类型</span><br><span class="line">tuple_1=(&apos;123&apos;,&apos;456&apos;)</span><br><span class="line">numpy_tuple=np.array(tuple_1,dtype=&apos;str&apos;) </span><br><span class="line">print(numpy_list)</span><br><span class="line">print(numpy_tuple) </span><br></pre></td></tr></table></figure><br>创建特殊的array<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numpy_zero=np.zeros([2,2])  #创建2*2全为0的array</span><br><span class="line">numpy_one=np.ones([2,2])	#创建2*2全为1的array</span><br><span class="line">numpy_eye=np.eye(5)		#创建5*5主对角线全为1的array</span><br><span class="line">np.arange(1,10,3)	#创建一个1-10，等差为3的等差数列，不包括10</span><br><span class="line">np.linspace(0,11,4)  #创建一个0-11的四等分的array</span><br></pre></td></tr></table></figure>  </p>
+<h3 id="对array的操作"><a href="#对array的操作" class="headerlink" title="对array的操作"></a>对array的操作</h3><p>有一般的矩阵加减乘除，在这里不在赘述。<br>生成0-1的随机数组成的array<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = np.random.random([3,3]) #3*3是array的shape</span><br></pre></td></tr></table></figure><br>生成标准正太分布的数组成的array<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = np.random.randn([3,3]) #3*3是array的shape，数字服从标准正太分布</span><br></pre></td></tr></table></figure><br>计算统计量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">num_sum = num.sum()	#计算array各元素之和  </span><br><span class="line">num_max	= num.max()	#计算array中最大的值  </span><br><span class="line">num_min	= num.min()	#计算array中最小的值  </span><br><span class="line">num_mean = num.mean() #计算array中的平均值</span><br><span class="line">num_std = num.std()  #计算array中各元素的标准差 </span><br><span class="line">num_var = num.var()  #计算array中各元素的方差</span><br><span class="line">num_row_sum = num.sum(axis=1)	#计算每一行中各元素之和 </span><br><span class="line">num_columns_min = num.sum(axis=0)	#计算array中每一列各元素之和   </span><br></pre></td></tr></table></figure><br>切片、去重、排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num_slice=num[1,:]	#获取第二行中所有元素  </span><br><span class="line">np.unique(num_slice)    #去重 </span><br><span class="line">np.sort(num_slice)    #从小到大排序</span><br></pre></td></tr></table></figure><br>对矩阵的基本操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num_t = num.T #num的转置 </span><br><span class="line">from numpy.linalg import inv  </span><br><span class="line">num_inv = inv(num) #num的逆矩阵  </span><br><span class="line">num_trace=np.trace(num)  #num对角线上的和</span><br></pre></td></tr></table></figure><br>numpy的条件表达式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t=np.where(condition,A,B) #condition为真，t=A，反之，t=B  </span><br></pre></td></tr></table></figure>  </p>
+<h2 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a>pandas</h2><p>&ensp;&ensp;&ensp;&ensp;pandas主要提供了两种数据格式，一种为Series和DataFrame两种数据类型的格式。</p>
+<h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><p>&ensp;&ensp;&ensp;&ensp;Series数据类型主要由索引号和值构成，在默认情况下，索引号为1,2,….</p>
+<ol>
+<li>创建<br>可以由list创建  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">s = pd.Series([1,2,3,4,5,&apos;str&apos;,np.nan],index=[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;,&apos;g&apos;])  </span><br></pre></td></tr></table></figure></li>
+<li>查看<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">print(s[&apos;a&apos;])	#通过索引查看相应的value</span><br><span class="line">print(s.loc[&apos;a&apos;])  #通过定位索引来查看相应的value</span><br><span class="line">print(s.iloc[0]) 	#通过下角标来查看相应的value </span><br><span class="line"></span><br><span class="line">s.index #查看s所有的索引  </span><br><span class="line">s.values #查看s所有的value</span><br><span class="line">s.size  #查看元素的个数</span><br><span class="line">s.shape  #查看元素的维度</span><br><span class="line">s.sort_value() #按照value大小进行排序 </span><br><span class="line">s.describe() #输出值的一些描述信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.head(5)	#查看前5个元素</span><br><span class="line">s.tail(3)	#从后向前数，后三个</span><br></pre></td></tr></table></figure>  </li>
+<li>删除  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">print(df.drop(&apos;e&apos;))  #删除&apos;e&apos;所对应值</span><br></pre></td></tr></table></figure> 
+<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3>&ensp;&ensp;&ensp;&ensp;DataFrame可以认为是传统意义上的表格,主要由索引(行名)、列名以及相应的值构成。</li>
+<li>创建  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;&apos;day1&apos;:[90,100, 95], &apos;day2&apos;:[60, 80, 100]&#125;, index=[&apos;math&apos;, &apos;english&apos;, &apos;python&apos;])</span><br></pre></td></tr></table></figure> </li>
+<li>查找<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">print(df.index) 	#输出索引，即行名</span><br><span class="line">print(df.columns) 	#输出列名 </span><br><span class="line">print(df.values) 	#输出value</span><br><span class="line">print(df.shape) 	#输出维度</span><br><span class="line">print(df.size)		#输出数据元素的个数</span><br><span class="line">print(df.head(2)) 	#输出前两行</span><br><span class="line">print(df.tail(2)) 	#输出最后面两行 </span><br><span class="line">print(df.describe()) 	#输出描述信息 </span><br><span class="line">print(df.loc[&apos;day1&apos;]) 	#输出&apos;day1&apos;对应列所有的元素</span><br><span class="line">print(df.loc[&apos;day1&apos;].loc[&apos;math&apos;]) #输出结果为90，等价于df.iloc[0][0] </span><br></pre></td></tr></table></figure> </li>
+<li>删除<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">print(df.drop(&apos;english&apos;))  #删除&apos;english&apos;所对应的每一行</span><br></pre></td></tr></table></figure> 
+</li>
+</ol>
+<h2 id="matplotlib"><a href="#matplotlib" class="headerlink" title="matplotlib"></a>matplotlib</h2><h3 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib </span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">from IPython.display import Image</span><br><span class="line">from IPython.display import *</span><br><span class="line"></span><br><span class="line">#设置随机种子</span><br><span class="line">np.random.seed(8)</span><br><span class="line"></span><br><span class="line">mu, sigma = 50, 3</span><br><span class="line">x = mu + sigma * np.random.randn(10000)</span><br><span class="line"></span><br><span class="line">n, bins, patches = plt.hist(x, 50, normed=1, facecolor=&apos;b&apos;, alpha=0.5)#画直方图，返回值中，bins是各个bin的区间起始点</span><br><span class="line"></span><br><span class="line">plt.xlabel(&apos;Num&apos;)</span><br><span class="line">plt.ylabel(&apos;Probability&apos;)</span><br><span class="line">plt.title(&apos;Histogram&apos;)</span><br><span class="line">plt.text(60, .025, g&apos;$\mu=50,\ \sigma=3$&apos;)</span><br><span class="line">plt.axis([50, 150, 0, 0.04])</span><br><span class="line">plt.grid(True)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure> 
+<h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">N = 20</span><br><span class="line">x = np.random.rand(N)</span><br><span class="line">y = np.random.rand(N)</span><br><span class="line">c = np.random.rand(N)</span><br><span class="line">area = np.pi * (10 * np.random.rand(N))**2  </span><br><span class="line">plt.scatter(x, y, s=area, c=c, alpha=0.5)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure> 
+
+      
+    </div>
+    
+    
+    
+	
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Michelle Yang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://michelleyang2017.github.io/2018/04/23/机器学习之python基础/" title="机器学习之python基础">https://michelleyang2017.github.io/2018/04/23/机器学习之python基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    
+
+
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/pay/wechatpay.png" alt="Michelle Yang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/pay/alipay.jpg" alt="Michelle Yang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/20/机器学习之开发环境/" rel="next" title="机器学习之开发环境">
+                <i class="fa fa-chevron-left"></i> 机器学习之开发环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/30/hello/" rel="prev" title="hello">
+                hello <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/image.jpg"
+                alt="Michelle Yang" />
+            
+              <p class="site-author-name" itemprop="name">Michelle Yang</p>
+              <p class="site-description motion-element" itemprop="description">所有的为时已晚都是开始的最好时候</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MichelleYang2017" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MichelleYang2017@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/MichelleYang018" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python内置数据类型"><span class="nav-number">1.</span> <span class="nav-text">python内置数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">1.1.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tuple"><span class="nav-number">1.2.</span> <span class="nav-text">tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dictionary"><span class="nav-number">1.3.</span> <span class="nav-text">dictionary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">1.4.</span> <span class="nav-text">set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python三大分支结构"><span class="nav-number">2.</span> <span class="nav-text">python三大分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序结构"><span class="nav-number">2.1.</span> <span class="nav-text">顺序结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择结构"><span class="nav-number">2.2.</span> <span class="nav-text">选择结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环结构"><span class="nav-number">2.3.</span> <span class="nav-text">循环结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pythonIO编程"><span class="nav-number">3.</span> <span class="nav-text">pythonIO编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写文件"><span class="nav-number">3.1.</span> <span class="nav-text">读写文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读写内存"><span class="nav-number">3.2.</span> <span class="nav-text">读写内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统函数调用"><span class="nav-number">3.3.</span> <span class="nav-text">系统函数调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python线程和进程"><span class="nav-number">4.</span> <span class="nav-text">python线程和进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程"><span class="nav-number">4.1.</span> <span class="nav-text">多进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">4.2.</span> <span class="nav-text">多线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy"><span class="nav-number">5.</span> <span class="nav-text">numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建numpy-array"><span class="nav-number">5.1.</span> <span class="nav-text">创建numpy array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对array的操作"><span class="nav-number">5.2.</span> <span class="nav-text">对array的操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas"><span class="nav-number">6.</span> <span class="nav-text">pandas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Series"><span class="nav-number">6.1.</span> <span class="nav-text">Series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame"><span class="nav-number">6.2.</span> <span class="nav-text">DataFrame</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matplotlib"><span class="nav-number">7.</span> <span class="nav-text">matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图"><span class="nav-number">7.1.</span> <span class="nav-text">直方图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">7.2.</span> <span class="nav-text">散点图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michelle Yang</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<span>　<i class="fa fa-bomb"></i></span>
+<span id="showDays"></span>
+
+
+-->
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2018,04,18,16,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共7.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://michelle18.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://michelleyang2017.github.io/2018/04/23/机器学习之python基础/';
+          this.page.identifier = '2018/04/23/机器学习之python基础/';
+          this.page.title = '机器学习之python基础';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://michelle18.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
