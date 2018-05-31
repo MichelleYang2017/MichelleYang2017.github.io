@@ -53,13 +53,8 @@
   
 
   
-    
-    
-  
 
   
-    
-      
     
 
     
@@ -69,7 +64,11 @@
 
   
     
-      
+
+    
+  
+
+  
     
 
     
@@ -77,16 +76,8 @@
 
   
     
-      
     
-
-    
-  
-
-  
-    
-    
-    <link href="https://fonts.google.com//css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.google.com//css?family=Roboto Slab:300,300italic,400,400italic,700,700italicLobster Two:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -133,7 +124,7 @@
 <meta property="og:site_name" content="Michelle">
 <meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;从去年一直就有写机器学习系列博客的计划，因为一些原因给耽误了，借着自己这几天搭建的博客站点，开始着手记录自己关于机器学习的系列笔记。在这一篇章章中主要是记录一下机器学习的开发环境。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T11:15:59.566Z">
+<meta property="og:updated_time" content="2018-05-22T09:15:18.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之开发环境">
 <meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;从去年一直就有写机器学习系列博客的计划，因为一些原因给耽误了，借着自己这几天搭建的博客站点，开始着手记录自己关于机器学习的系列笔记。在这一篇章章中主要是记录一下机器学习的开发环境。">
@@ -207,7 +198,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">记录每一周的成长</p>
+        <p class="site-subtitle">千里之行，始于足下。</p>
       
   </div>
 
@@ -439,7 +430,7 @@
       
 
       
-        <p><font color="#20B2AA" size="3">&ensp;&ensp;&ensp;&ensp;从去年一直就有写机器学习系列博客的计划，因为一些原因给耽误了，借着自己这几天搭建的博客站点，开始着手记录自己关于机器学习的系列笔记。在这一篇章章中主要是记录一下机器学习的开发环境。</font><br><a id="more"></a>   </p>
+        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;从去年一直就有写机器学习系列博客的计划，因为一些原因给耽误了，借着自己这几天搭建的博客站点，开始着手记录自己关于机器学习的系列笔记。在这一篇章章中主要是记录一下机器学习的开发环境。<br><a id="more"></a>   </font></p>
 <h2 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h2><p>&ensp;&ensp;&ensp;&ensp;开发环境前期主要是用Anaconda，后期如果碰见大项目会用Pycharm。<br>Anconda：用通俗的话说，是高配的python，Anaconda集成了python、关于python的包以及包所需要的依赖。<br>Pycharm：是python的集成开发环境，我们可以将Anaconda自带的python作为Pycharm的解释器。  </p>
 <ol>
 <li>下载并安装<a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">Anaconda</a>，注意选用python3.6版本的,2.7版本的停止维护了。   </li>
@@ -449,35 +440,35 @@
 <h2 id="安装多个python环境"><a href="#安装多个python环境" class="headerlink" title="安装多个python环境"></a>安装多个python环境</h2><p>&ensp;&ensp;&ensp;&ensp;由于一些机器学习的包只支持python2.7，python3.6一些包还不是特别完善，所以需要安装python2.7环境。在windows下面，如果使用深度学习框架Tensorflow的话，目前Windows版的Tensorflow包和python3.5配合的最好，所以我们需要安装带有python3.5的Tensorflow包。   </p>
 <h3 id="配置python2-7环境"><a href="#配置python2-7环境" class="headerlink" title="配置python2.7环境"></a>配置python2.7环境</h3><ol>
 <li><p>创建python2.7新环境  </p>
-<pre><code class="bash">$ conda create -n python2 python=2.7
+<pre><code class="lang-bash">$ conda create -n python2 python=2.7
 </code></pre>
 </li>
 <li><p>进入新环境  </p>
-<pre><code class="bash">$ activate python2
+<pre><code class="lang-bash">$ activate python2
 </code></pre>
 </li>
 <li><p>添加环境到jupyter notebook  </p>
-<pre><code class="bash">$ pip install ipykernel //安装ipykernel
-$ python -m ipykernel install --name python2 //安装python2.7,并将其添加到jupyter notebook kernel中 
+<pre><code class="lang-bash">$ pip install ipykernel //安装ipykernel
+$ python -m ipykernel install --name python2 //安装python2.7,并将其添加到jupyter notebook kernel中
 </code></pre>
 </li>
 </ol>
 <p>&ensp;&ensp;&ensp;&ensp;查看已有的kernel:   </p>
-<pre><code class="bash">$ jupyter kernelspec list
+<pre><code class="lang-bash">$ jupyter kernelspec list
 </code></pre>
 <h3 id="配置Tesorflow环境"><a href="#配置Tesorflow环境" class="headerlink" title="配置Tesorflow环境"></a>配置Tesorflow环境</h3><ol>
 <li><p>创建tensorflow新环境  </p>
-<pre><code class="bash">$ conda create -n tensorflow python=3.5
+<pre><code class="lang-bash">$ conda create -n tensorflow python=3.5
 </code></pre>
 </li>
 <li><p>进入新环境  </p>
-<pre><code class="bash">$ activate tensorflow
+<pre><code class="lang-bash">$ activate tensorflow
 </code></pre>
 </li>
 <li><p>添加环境到jupyter notebook  </p>
-<pre><code class="bash">$ pip install tensorflow //安装tensorflow
+<pre><code class="lang-bash">$ pip install tensorflow //安装tensorflow
 $ pip install ipykernel //安装ipykernel
-$ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorflow环境添加到jupyter notebook kernel中 
+$ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorflow环境添加到jupyter notebook kernel中
 </code></pre>
 </li>
 </ol>
@@ -656,7 +647,7 @@ $ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorfl
                 alt="Michelle Yang" />
             
               <p class="site-author-name" itemprop="name">Michelle Yang</p>
-              <p class="site-description motion-element" itemprop="description">所有的为时已晚都是开始的最好时候</p>
+              <p class="site-description motion-element" itemprop="description">向内认知，向外行走。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -666,7 +657,7 @@ $ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorfl
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +679,7 @@ $ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorfl
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -825,7 +816,7 @@ $ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorfl
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.6k字</span>
+  <span class="post-count">博客全站共19.3k字</span>
 </div>
 
         
@@ -970,24 +961,7 @@ $ python -m ipykernel install --name tensorflow //安装python3.5,并将tensorfl
         s.src = 'https://michelle18.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+      </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
   

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="7XAJS-oOL3lrJyBUDp01FyRpahnQp3a0xj4-zRXAIeU" />
+<meta name="baidu-site-verification" content="dCyUeK4OMf" />  
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.google.com//css?family=Roboto Slab:300,300italic,400,400italic,700,700italicLobster Two:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,提升," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;提升(Boosting)是一种常用的统计学习方法，是一族将弱学习器提升为强学习器的算法，属于集成学习(ensemble)。">
+<meta name="keywords" content="机器学习,提升">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之提升方法">
+<meta property="og:url" content="https://michelleyang2017.github.io/2018/05/17/机器学习之提升方法/index.html">
+<meta property="og:site_name" content="Michelle">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;提升(Boosting)是一种常用的统计学习方法，是一族将弱学习器提升为强学习器的算法，属于集成学习(ensemble)。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-30T08:07:03.203Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习之提升方法">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;提升(Boosting)是一种常用的统计学习方法，是一族将弱学习器提升为强学习器的算法，属于集成学习(ensemble)。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://michelleyang2017.github.io/2018/05/17/机器学习之提升方法/"/>
+
+
+
+
+
+  <title>机器学习之提升方法 | Michelle</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/MichelleYang2017"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michelle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">千里之行，始于足下。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michelleyang2017.github.io/2018/05/17/机器学习之提升方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michelle Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/image.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michelle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习之提升方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T08:33:07+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/机器学习之提升方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/17/机器学习之提升方法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,386
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+          
+          
+		  <span>&nbsp; | &nbsp;
+          <span id="busuanzi_value_page_pv" ></span>次阅读
+          </span>    
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+   
+
+      
+      
+
+      
+        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;提升(Boosting)是一种常用的统计学习方法，是一族将弱学习器提升为强学习器的算法，属于集成学习(ensemble)。<br><a id="more"></a><br>&ensp;&ensp;&ensp;&ensp;Boosting方法通俗点理解就是“三个臭皮匠，顶个诸葛亮”。也就是所谓地将多个专家的判断进行综合所得出的判断，要比一个专家单独的判断要好。<strong><font color="#FF4F4F">Boosting主要是通过分步迭代的方式构建模型，在迭代的每一步构建的弱学习器都是弥补了已有模型的不足。</font></strong></font></p>
+<h2 id="写在模型之前"><a href="#写在模型之前" class="headerlink" title="写在模型之前"></a>写在模型之前</h2><p>&ensp;&ensp;&ensp;&ensp;机器学习之中的监督学习有几个重要的组成部分，可以初略地分为：模型(model)、参数(parameters)和目标函数(objective function)。</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>&ensp;&ensp;&ensp;&ensp;模型指定了对于给定的$x_i$如何去预测输出$y_i$。比如之前总结的线性模型(线性回归、Logistic回归)采用线性加权的方式进行预测得到$\hat y_i=\theta^T x_i$。对于线性回归来说线性模型的输出可以是连续值也可以通过sigmoid变换得到概率。</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>&ensp;&ensp;&ensp;&ensp;参数是需要学习的东西，在线性模型中，就是指系数$\theta$</p>
+<h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;模型和参数指定了给定输入如何做预测，但是并没有指明如何寻找较优的参数，所以每个模型都有一个目标函数，通过拟合训练数据，优化目标函数，进而可以求得参数。一般目标函数表示成下面两项：</p>
+<script type="math/tex; mode=display">Obj(\Theta)=L(\Theta)+\Omega(\Theta)</script><p>目标函数主要包含两项：损失函数和正则项。$L(\Theta)$可以称之为损失函数，用来衡量拟合训练数据的程度，比如说常见的平方误差等。$\Omega(\Theta)$可以称之为正则化项，用来衡量模型复杂程度的，比如说线性模型中常见的正则化项有$l2$正则和$l1$正则。损失函数鼓励我们建立的模型尽量拟合训练数据，最后用来预测的话会有比较小的偏差。而正则化项则鼓励更加简单的模型，当模型简单之后，不容易过拟合，使得模型具有泛化能力。</p>
+<h2 id="GBM"><a href="#GBM" class="headerlink" title="GBM"></a>GBM</h2><p>&ensp;&ensp;&ensp;&ensp;基于梯度提升算法的学习器叫做GBM(gradient boosting machine)，通过集成(ensemble)多个弱学习器，通常基学习器是决策树(通常是CART树,不同于决策树，每一个叶子都会有具体的分数)，来构建最终的预测模型。<br><strong> 问题1：为什么基学习器倾向于决策树？</strong><br>&ensp;&ensp;&ensp;&ensp;决策树可以认为是if-then规则的集合，易于理解，解释性强，速度快；需要更少的特征工程(缺失值处理、不用特征标准化等)。但是单独使用决策树容易导致过拟合，但是可以通过抑制决策树的复杂性、降低单棵决策树的拟合能力，再通过梯度提升方法集合多个决策树，可以很好的解决这个问题。</p>
+<h3 id="GBDT概述"><a href="#GBDT概述" class="headerlink" title="GBDT概述"></a>GBDT概述</h3><p>&ensp;&ensp;&ensp;&ensp;Boosting Tree的核心就在于，每一棵树学的是之前所有树结论和的残差，这个残差就是一个加预测值后能得真实值的累加量。比如A的真实年龄是18岁，但第一棵树的预测年龄是12岁，差了6岁，即残差为6岁。那么在第二棵树里我们把A的年龄设为6岁去学习，如果第二棵树真的能把A分到6岁的叶子节点，那累加两棵树的结论就是A的真实年龄；如果第二棵树的结论是5岁，则A仍然存在1岁的残差，第三棵树里A的年龄就变成1岁，继续学。  </p>
+<p>&ensp;&ensp;&ensp;&ensp;为了消除残差，我们可以在残差减少的梯度(Gradient)方向上建立一个新的模型。所以说，在Gradient Boost中，每个新的模型的建立是为了使得之前模型的残差往梯度方向减少。 </p>
+<h3 id="加法模型"><a href="#加法模型" class="headerlink" title="加法模型"></a>加法模型</h3><p>&ensp;&ensp;&ensp;&ensp;GBDT算法可以看成是由K棵树组成的加法模型：</p>
+<script type="math/tex; mode=display">\hat y_i=\sum_{k=1}^Kf_k(x_i),f_k\in F</script><p>以回归任务为例，F对应了所有回归树的集合，回归树可以将输入数据转化成一个score。加法模型实际上是直接学习决策树。该加法模型的目标函数可以定义为：</p>
+<script type="math/tex; mode=display">Obj=\sum_{i=1}^nl(y_i,\hat y_i)+\sum_{k=1}^K\Omega(f_k)</script><p>其中，$\Omega$表示决策树的复杂度，该如何定义树的复杂度呢？如何学习加法模型呢？</p>
+<h3 id="前向分步算法"><a href="#前向分步算法" class="headerlink" title="前向分步算法"></a>前向分步算法</h3><p>&ensp;&ensp;&ensp;&ensp;在优化目标函数之前，我们首先得知道树的参数是什么。使用CART树对样本进行分类或者是回归，是从根节点到叶节点的细化的逐步细化的过程，落在相同叶节点的样本的预测值是相同的。CART树的学习过程就是构造如何使用特征得到划分，从而得到score的过程。总之，一棵决策树的核心就是“树结构”和“叶节点的score”，那么我们要学习的$f_i$都包含树的结构以及叶子分数。一次性训练所有的树的结构以及树的分数并不是一件容易的事情。因此我们采用前向分布算法，即所谓的贪心法，每一步只学习一个树的结构和叶子分数，逐步逼近优化的目标，从而简化复杂度。具体地，我们从一个常量预测开始，每次学习一个新的树。其中$\hat y_i^{(t)}$表示步骤t的预测值：</p>
+<script type="math/tex; mode=display">\begin{align}
+\hat y_i^0&=0\\\\
+ \hat y_i^1&=f_1(x_i)=\hat y_i^0+f_1(x_i)\\\\
+ \hat y_i^2&=f_1(x_i)+f_2(x_i)=\hat y_i^1+f_2(x_i)\\\\
+  &……\\\\
+ \hat y_i^t&=\sum_{k=1}^tf_k(x_i)=\hat y_i^{t-1}+f_t(x_i)
+ \end{align}</script><p>那么，如何决定每一步哪一棵树f被加入呢？选取标准还是最小化目标函数。<br>在第t步，模型对$x_i$的预测为：$\hat y_i^t=\hat y_i^{t-1}+f_t(x_i)$，其中$f_t(x_i)$为这一次我们要学习的树。目标函数可以写为：<br>\begin{equation}\begin{split} Obj(t)&amp;=\sum_{i=1}^nl(y_i,\hat y_i^t)+\sum_{i=i}^t\Omega(f_i)\\\\<br>&amp; =\sum_{i=1}^nl(y_i,\hat y_i^{t-1}+f_t(x_i))+\Omega(f_t)\\\\<br>\end{split}\tag{1}\end{equation}<br>举例说明，假设损失函数是均方误差，则目标函数可以表示为：<br>\begin{equation}\begin{split} Obj(t)&amp;=\sum_{i=1}^nl(y_i-(\hat y_i^t))^2+\Omega(f_t)\\\\<br>&amp; =\sum_{i=1}^n[2(\hat y_i^{t-1}-y_i)f_t(x_i)+f_t(x_i)^2]+\Omega(f_t)+C\\\\<br>\end{split}\end{equation}<br>其中，$(\hat y_i^{t-1}-y_i)$称为残差，因此，使用平方损失函数时，GBDT算法的每一步在生成决策树时只需要拟合前面的模型的残差。<br>每一棵回归树都在学习前N-1棵树的残差。</p>
+<h3 id="GBDT的正则化"><a href="#GBDT的正则化" class="headerlink" title="GBDT的正则化"></a>GBDT的正则化</h3><p>&ensp;&ensp;&ensp;&ensp;为了防止GBDT过拟合，徐亚对其进行正则化。GBDT正则化的三种方式：</p>
+<ol>
+<li>加入和步长$\lambda$类似的正则项<br>对于第t轮，我们将预测值可以表示为：<script type="math/tex; mode=display">\hat y_i^t=\sum_{k=1}^tf_k(x_i)=\hat y_i^{t-1}+f_t(x_i)</script>加入正则项之后，变为：<script type="math/tex; mode=display">\hat y_i^t=\sum_{k=1}^tf_k(x_i)=\hat y_i^{t-1}+\lambda f_t(x_i)</script>$\lambda$取值介于0-1之间，对于同样的训练集效果，较小的步长一位置我们需要更多的弱学习器迭代次数。通常采用步长和迭代最大次数一起决定算法的拟合效果。</li>
+<li>子采样(subsample)<br>这里提到的子采样和随机森林不一样，随机森林是有放回地抽样，这里是不放回地抽样。如果取值为1，则全部使用，等于没有使用子采样。若小于1，则表示只有有份样本会做GBDT的决策树拟合，防止过拟合。又是也会称之为随机梯度提升树。</li>
+<li>正则化剪枝<br>剪枝包括预剪枝和后剪枝。在决策树有介绍。</li>
+</ol>
+<p><strong>GBDT(Gradient Boosting Decision Tree)主要就是利用梯度下降(Gradient descent)的想法应用在Boosting中，因为前向分布算法是一个残差逼近的过程，新学习的树需要让残差进一步下降。梯度提升算法主要是使残差沿着负梯度方向逐渐减少，逼近拟合值。</strong></p>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>xgboost(eXtreme Gradient Boosting)是由陈天奇提出，可以说是GBDT的升级版。</p>
+<h3 id="目标函数-1"><a href="#目标函数-1" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;目标函数和之前提到的一样，包括损失函数和正则项。目标函数同公式(1)。这里，为了表示一般情况，我们将公式(1)泰勒展开，近似得到我们原来的目标：<br>二阶泰勒展开公式:</p>
+<script type="math/tex; mode=display">f(x+\Delta x)\approx f(x)+f'(x)\Delta x+\frac12f''(x)\Delta x^2</script><p>定义：</p>
+<script type="math/tex; mode=display">g_i=\frac{\partial l(y_i,\hat y_i^{t-1})}{\partial \hat y_i^{t-1}},h_i=\frac{\partial^2 l(y_i,\hat y_i^{t-1})}{\partial^2 \hat y_i^{(t-1)}}</script><p>目标函数的二阶泰勒展开：</p>
+<script type="math/tex; mode=display">Obj(t)\approx \sum_{i=1}^n[l(y_i,\hat y_i^{t-1})+g_if_t(x_i)+\frac12h_if_t^2(x_i)]+\Omega(f_t)+C</script><p>移除常数项，得：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^n[g_if_t(x_i)+\frac12h_if_t^2(x_i)]+\Omega(f_t)</script><p><strong>这个目标函数值依赖于每个数据点的在误差函数上的一阶导数和二阶导数。通过推导取探索出如何进行树的学习。</strong>树的复杂度如何定义。可以将树拆分成结构部分$q$和叶子score部分$\omega$。$q$把输入映射到叶子的索引号上面去，而$\omega$给定额每个索引号对应的叶子score是什么。用数学公式可以表示为：$f_t(x)=\omega_q(x)$举个例子，树的复杂度可一考虑叶子的节点数和叶子score,我么可以使用叶节点的综述和叶子score平方和的加权来表示树的复杂度。</p>
+<script type="math/tex; mode=display">\Omega(f_t)=\gamma T+\frac12\lambda\sum_{j=1}^Tw_j^2</script><p>其中，$\gamma$和$\lambda$是超参数，人为指定，$T$代表的树的叶子节点个数。<br>通过对公式进行进一步地整理，我们可以得到最终的目标函数可以表示为：<br>\begin{equation}\begin{split} Obj(t)&amp;\approx \sum_{i=1}^n[l(y_i,\hat y_i^{t-1})+g_if_t(x_i)+\frac12h_if_t^2(x_i)]+\gamma T+\frac12\lambda\sum_{j=1}^Tw_j^2+C\\\\<br>&amp; =\sum_{i=1}^n[g_iw_{q(x_i)}+\frac12h_iw_{q{(x_i)}}^2]+\gamma·T+\frac12\lambda\sum_{j=1}^Tw_j^2+C\\\\<br>&amp;=\sum_{j=1}^T[(\sum_{i \in I_j}g_i)w_j+\frac12(\sum_{i \in I_j}h_i)w_j^2]+\gamma·T+\frac12\lambda\sum_{j=1}^Tw_j^2+C\\\\<br>&amp;=\sum_{j=1}^T[(\sum_{i \in I_j}g_i)w_j+\frac12(\sum_{i \in I_j}h_i+\lambda)w_j^2]+\gamma·T+C\\\\<br>\end{split}\end{equation}<br>进一步简化，令$G_j=\sum_{i \in I_j}g_i$,$H_j=\sum_{i \in I_j}h_i$，得：</p>
+<script type="math/tex; mode=display">Obj(t)=\sum_{j=1}^T[G_jw_j+\frac12(H_j+\lambda)w_j^2]+\gamma T</script><p>目标函数对$w_j$求偏导得：</p>
+<script type="math/tex; mode=display">\frac{\partial Obj(t)}{\partial w}=G_j+(H_j+\lambda)w_j \tag{2}</script><p>让公式(2)==0，得：$w_j=-\frac{G_j}{H_j+\lambda}$,并将该解带入回目标函数，得：</p>
+<script type="math/tex; mode=display">Obj(t)=-\frac12\sum_{j=1}^T\frac{G_j^2}{H_j+\lambda}+\gamma T</script><h3 id="构造树结构"><a href="#构造树结构" class="headerlink" title="构造树结构"></a>构造树结构</h3><p>&ensp;&ensp;&ensp;&ensp;根据上述推导，了解到如何评价一棵树的好坏，接下来我们将树进行分解，对于当前节点，如何对该节点进行划分，将该节点划分成两个子节点?借鉴决策树的做法，使用贪心法，枚举可行的分割点，选择增益最大的分割点进行划分,则节点划分之前和划分之后的目标函数之差表示为：</p>
+<script type="math/tex; mode=display">Gain=\frac12[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}]-\gamma</script><p>如果$Gain$比$\gamma$稍小，最好不要增加这个分支，达到预剪枝的一个效果。通过这种方式，不断构造各种分发的树，进而构造最佳的树。</p>
+<h2 id="Adaboost"><a href="#Adaboost" class="headerlink" title="Adaboost"></a>Adaboost</h2><p>&ensp;&ensp;&ensp;&ensp;Adaboost(Adaptive Boosting)是通过改变训练数据的权重，将若干弱分类器组合成一个强分类器。Adaboost关于改变样本权重具体做法是提高那些前一轮被弱分类器错误分类的样本的权值，使得被分错的样本在当前轮能够受到更大的关注。关于将弱分类器组合问题，本质上是加权求和，具体地就是加大分类误差率下的弱分类器的权值，使其在表决中起较大的作用，减小分类误差率大的弱分类器的权值，使得在表决中起较小的作用。</p>
+<h3 id="分类算法描述"><a href="#分类算法描述" class="headerlink" title="分类算法描述"></a>分类算法描述</h3><p>设一个二分类训练数据集为：</p>
+<script type="math/tex; mode=display">T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}</script><p>每一个样本点由实例与标记组成,$y_i \in y={-1,+1}$</p>
+<ol>
+<li>初始化训练数据的权值分布<script type="math/tex; mode=display">D_1=(w_{11},…,w_{1i},…,w_{1N}),w_{1i}=\frac1N,i=1,2,…,N</script></li>
+<li>对于$m=1,2,…,M$<br>(1)使用具有权值分布$D_m$的训练数据集学习，得到基本分类器：<script type="math/tex; mode=display">G_m(x):x->{-1,1}</script>(2)计算$G_m(x)$在训练数据集上的分类误差率：<script type="math/tex; mode=display">e_m=P(G_m(x_i)\neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i)\neq y_i)</script>(3)计算G_m(x)的系数：<script type="math/tex; mode=display">\alpha_m=\frac12log\frac{1-e_m}{e_m}</script>(4)更新数据集的权值分布：<script type="math/tex; mode=display">D_{m+1}=(w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N})</script><script type="math/tex; mode=display">w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,…,N</script>其中，$Z_m$是规范化因子，$Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i))$,使得$D_{m+1}$成为一个概率分布。</li>
+<li>构建基本分类器的线性组合<script type="math/tex; mode=display">f(x)=\sum_{m=1}^M\alpha_mG_m(x)</script>得到最终分类器：<script type="math/tex; mode=display">G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))</script>这一小节，主要是介绍弱学习器的权值公式以及样本权重更新公式。下一小节将通过目标函数来推导。<h3 id="目标函数-2"><a href="#目标函数-2" class="headerlink" title="目标函数"></a>目标函数</h3>&ensp;&ensp;&ensp;&ensp;<strong>Adaboost算法是模型为加法模型、损失函数是指数函数、学习算法为前向分布算法的二分类学习方法。</strong><h3 id="误差函数"><a href="#误差函数" class="headerlink" title="误差函数"></a>误差函数</h3>第$m-1$轮和第$m$轮的弱学习器为：<script type="math/tex; mode=display">f_{m-1}=\sum_{i=1}^{m-1}\alpha_iG_i(x)</script><script type="math/tex; mode=display">f_{m}=\sum_{i=1}^{m}\alpha_iG_i(x)=f_{m-1}(x)+\alpha_mG_m(x)\tag{3}</script>公式(3)正式体现了强学习器为前向分布算法一步步得到的。损失函数为指数函数，定义损失函数为：<script type="math/tex; mode=display">(\alpha_m,G_m(x))=argmin\sum_{i=1}^Nexp[-y_i(f_{m-1}(x_i)+\alpha G_m(x_i))]</script>令$w_{mi}’=exp(-y_if_{m-1}(x))$,该值不依赖于$\alpha,G$而改变，与最小化无关。但依赖于$f_{m-1}(x)$，随着每一轮迭代而发生改变。损失函数可以表示为：<script type="math/tex; mode=display">(\alpha_m,G_m(x))=argmin\sum_{i=1}^Nw_{mi}'exp[-y_i\alpha G_m(x_i)]</script>求$G_m(x)$，对于任意的$\alpha \ge 0$,使得上式子最小的$G_m(x)$可以由下面得：<script type="math/tex; mode=display">G_m(x)=argmin\sum_{i=1}^mw_{mi}'I(y_i\neq G(x_i))</script>将$G_m(x)$代入损失函数，并对$\alpha$进行求导，使其等于0，于是我们得到<script type="math/tex; mode=display">\alpha_m=\frac12 log\frac{1-e_m}{e_m},e_m=\sum_{i=1}^N w_{mi}'I(y_i\neq G(x_i))</script>由于$f_m(x)=f_{m-1}(x)+\alpha_mG_m(x)$，以及$w_{mi}’=exp[-y_if_{m-1}(x_i)]$,样本更新权重可表示为：<script type="math/tex; mode=display">w_{m+1，i}'=w_{m,i}exp[-y_i\alpha_mG_m(x_i)]</script></li>
+</ol>
+<h3 id="正则项"><a href="#正则项" class="headerlink" title="正则项"></a>正则项</h3><p>&ensp;&ensp;&ensp;&ensp;为了防止Adaboost过拟合，通常是会加入正则项，这个正则项通常称之为步长，之前在GBDT小节中提到的。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p>李航,统计学习方法，清华大学出版社，2012<br><a href="https://blog.csdn.net/w28971023/article/details/8240756" target="_blank" rel="noopener">GBDT残差迭代</a><br><a href="http://www.cnblogs.com/LeftNotEasy/archive/2011/03/07/random-forest-and-gbdt.html" target="_blank" rel="noopener">GBDT梯度迭代</a><br><a href="https://www.zybuluo.com/yxd/note/611571" target="_blank" rel="noopener">GBDT算法深入解析</a><br><a href="http://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="noopener">GBDT详细推导</a><br><a href="http://www.52cs.org/?p=429" target="_blank" rel="noopener">陈天奇中文介绍XGboost</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+	
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Michelle Yang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://michelleyang2017.github.io/2018/05/17/机器学习之提升方法/" title="机器学习之提升方法">https://michelleyang2017.github.io/2018/05/17/机器学习之提升方法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    
+
+
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/pay/wechatpay.png" alt="Michelle Yang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/pay/alipay.jpg" alt="Michelle Yang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/提升/" rel="tag"><i class="fa fa-tag"></i> 提升</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/16/机器学习之随机森林/" rel="next" title="机器学习之随机森林">
+                <i class="fa fa-chevron-left"></i> 机器学习之随机森林
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/19/机器学习之支持向量机/" rel="prev" title="机器学习之支持向量机">
+                机器学习之支持向量机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/image.jpg"
+                alt="Michelle Yang" />
+            
+              <p class="site-author-name" itemprop="name">Michelle Yang</p>
+              <p class="site-description motion-element" itemprop="description">向内认知，向外行走。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MichelleYang2017" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MichelleYang2017@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/MichelleYang018" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在模型之前"><span class="nav-number">1.</span> <span class="nav-text">写在模型之前</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">1.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">1.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">1.3.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GBM"><span class="nav-number">2.</span> <span class="nav-text">GBM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT概述"><span class="nav-number">2.1.</span> <span class="nav-text">GBDT概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加法模型"><span class="nav-number">2.2.</span> <span class="nav-text">加法模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前向分步算法"><span class="nav-number">2.3.</span> <span class="nav-text">前向分步算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT的正则化"><span class="nav-number">2.4.</span> <span class="nav-text">GBDT的正则化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-number">3.</span> <span class="nav-text">XGBoost</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数-1"><span class="nav-number">3.1.</span> <span class="nav-text">目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造树结构"><span class="nav-number">3.2.</span> <span class="nav-text">构造树结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaboost"><span class="nav-number">4.</span> <span class="nav-text">Adaboost</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类算法描述"><span class="nav-number">4.1.</span> <span class="nav-text">分类算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数-2"><span class="nav-number">4.2.</span> <span class="nav-text">目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#误差函数"><span class="nav-number">4.3.</span> <span class="nav-text">误差函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则项"><span class="nav-number">4.4.</span> <span class="nav-text">正则项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michelle Yang</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<span>　<i class="fa fa-bomb"></i></span>
+<span id="showDays"></span>
+
+
+-->
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2018,04,18,16,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://michelle18.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://michelleyang2017.github.io/2018/05/17/机器学习之提升方法/';
+          this.page.identifier = '2018/05/17/机器学习之提升方法/';
+          this.page.title = '机器学习之提升方法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://michelle18.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

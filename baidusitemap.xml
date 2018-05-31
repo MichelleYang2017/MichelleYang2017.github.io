@@ -4,14 +4,82 @@
 
     
   <url>
+    <loc>https://michelleyang2017.github.io/2018/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/</loc>
+    <lastmod>2018-05-31T01:31:47.199Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之支持向量机</title>
+        <pubTime>2018-05-19T06:38:55.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>支持向量机</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-05-30T08:07:03.203Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之提升方法</title>
+        <pubTime>2018-05-17T00:33:07.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>提升</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://michelleyang2017.github.io/2018/05/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/</loc>
-    <lastmod>2018-05-06T12:11:59.282Z</lastmod>
+    <lastmod>2018-05-28T11:08:43.372Z</lastmod>
     <data>
         <display>
         <title>机器学习之评价指标</title>
         <pubTime>2018-05-01T11:41:20.000Z</pubTime>
         
-        <tag>机器学习，评价指标</tag>
+        <tag>机器学习</tag>
+         
+        <tag>评价指标</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8Blogistic%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2018-05-28T08:35:48.411Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之logistic回归</title>
+        <pubTime>2018-05-10T01:00:48.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>Logistic回归</tag>
          
          
            
@@ -25,14 +93,87 @@
     
   <url>
     <loc>https://michelleyang2017.github.io/2018/05/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</loc>
-    <lastmod>2018-05-06T10:21:12.159Z</lastmod>
+    <lastmod>2018-05-28T01:24:10.299Z</lastmod>
     <data>
         <display>
         <title>机器学习之线性回归</title>
         <pubTime>2018-05-06T10:21:12.000Z</pubTime>
         
+        <tag>机器学习</tag>
+         
+        <tag>线性回归</tag>
+         
          
            
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/</loc>
+    <lastmod>2018-05-28T00:29:20.968Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之随机森林</title>
+        <pubTime>2018-05-16T10:25:31.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>随机森林</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2018-05-28T00:29:09.132Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之聚类算法</title>
+        <pubTime>2018-05-27T12:56:37.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>聚类</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%B3%E7%AD%96%E6%A0%91/</loc>
+    <lastmod>2018-05-28T00:29:04.093Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之决策树</title>
+        <pubTime>2018-05-13T13:50:17.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>决策树</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
         </display>
     </data>
     </url>
@@ -40,7 +181,7 @@
     
   <url>
     <loc>https://michelleyang2017.github.io/2018/04/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8Bpython%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2018-04-26T11:52:56.177Z</lastmod>
+    <lastmod>2018-05-23T13:38:55.391Z</lastmod>
     <data>
         <display>
         <title>机器学习之python基础</title>
@@ -61,30 +202,8 @@
 
     
   <url>
-    <loc>https://michelleyang2017.github.io/2018/04/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2018-04-21T11:15:59.566Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习之开发环境</title>
-        <pubTime>2018-04-20T13:07:43.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>开发环境</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://michelleyang2017.github.io/2018/04/19/Github-Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2018-04-20T09:51:00.868Z</lastmod>
+    <lastmod>2018-05-22T09:16:12.243Z</lastmod>
     <data>
         <display>
         <title>Github+Hexo个人博客搭建</title>
@@ -100,6 +219,28 @@
            
              
               <breadCrumb title="博客搭建" url="https://michelleyang2017.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/04/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2018-05-22T09:15:18.280Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之开发环境</title>
+        <pubTime>2018-04-20T13:07:43.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>开发环境</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>

@@ -53,13 +53,8 @@
   
 
   
-    
-    
-  
 
   
-    
-      
     
 
     
@@ -69,7 +64,11 @@
 
   
     
-      
+
+    
+  
+
+  
     
 
     
@@ -77,16 +76,8 @@
 
   
     
-      
     
-
-    
-  
-
-  
-    
-    
-    <link href="https://fonts.google.com//css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.google.com//css?family=Roboto Slab:300,300italic,400,400italic,700,700italicLobster Two:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -114,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="机器学习,线性回归," />
 
 
 
@@ -125,18 +116,18 @@
 
 
 
-<meta name="description" content="所有的为时已晚都是开始的最好时候">
-<meta name="keywords" content="IT">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在机器学习中，线性回归(Linear regression)是指利用最小二乘法对一个或多个自变量和因变量之间关系进行建模的一种回归分析方法。">
+<meta name="keywords" content="机器学习,线性回归">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习之线性回归">
 <meta property="og:url" content="https://michelleyang2017.github.io/2018/05/06/机器学习之线性回归/index.html">
 <meta property="og:site_name" content="Michelle">
-<meta property="og:description" content="所有的为时已晚都是开始的最好时候">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在机器学习中，线性回归(Linear regression)是指利用最小二乘法对一个或多个自变量和因变量之间关系进行建模的一种回归分析方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-06T10:21:12.159Z">
+<meta property="og:updated_time" content="2018-05-28T01:24:10.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之线性回归">
-<meta name="twitter:description" content="所有的为时已晚都是开始的最好时候">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在机器学习中，线性回归(Linear regression)是指利用最小二乘法对一个或多个自变量和因变量之间关系进行建模的一种回归分析方法。">
 
 
 
@@ -207,7 +198,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">记录每一周的成长</p>
+        <p class="site-subtitle">千里之行，始于足下。</p>
       
   </div>
 
@@ -339,6 +330,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -373,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  2,733
                 </span>
               
 
@@ -389,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  11
                 </span>
               
             </div>
@@ -417,7 +430,78 @@
       
 
       
-        
+        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;在机器学习中，线性回归(Linear regression)是指利用最小二乘法对一个或多个自变量和因变量之间关系进行建模的一种回归分析方法。<br><a id="more"></a></font></p>
+<h2 id="线性回归初识"><a href="#线性回归初识" class="headerlink" title="线性回归初识"></a>线性回归初识</h2><p>&ensp;&ensp;&ensp;&ensp;在有监督的机器学习中，根据样本中$label$是离散值还是连续值，将学习问题分为分类问题和回归问题。线性回归主要是根据样本数据的线性加权拟合出一条直线，使得拟合的直线能逼近真实值。线性回归建模后得到的预测值用数学表达式表示为：</p>
+<script type="math/tex; mode=display">\bf{h_\theta(x)=\sum_{i=0}^n\theta_ix_i=\theta^T x}</script><p> 注意：线性指的是参数是线性的，样本数据可以是非线性的。</p>
+<h2 id="线性回归目标函数"><a href="#线性回归目标函数" class="headerlink" title="线性回归目标函数"></a>线性回归目标函数</h2><h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><h4 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h4><p>&ensp;&ensp;&ensp;&ensp;实际问题中，很多随机现象可以看做是众多因素的独立影响的综合反映，往往近似服从正太分布。</p>
+<h4 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h4><p>&ensp;&ensp;&ensp;&ensp;最大似然估计就是利用已知的样本的结果，在使用某个模型的基础之上，反推导致这样结果的参数值。</p>
+<h3 id="最小二乘目标函数推导"><a href="#最小二乘目标函数推导" class="headerlink" title="最小二乘目标函数推导"></a>最小二乘目标函数推导</h3><p>&ensp;&ensp;&ensp;&ensp;预测值和真实值之间关系表达式可以表示为如下（其中$\varepsilon^{(i)}$代表的是残差项）：</p>
+<script type="math/tex; mode=display">y^{(i)}=\theta^Tx^{(i)}+\varepsilon^{(i)}</script><p>假设数据集中有$m$个样本都是独立同分布的，即假设真实值只和自己样本数据有关，$\varepsilon^{(i)}$服从一定的分布，由于残差项产生的原因可能是由于建模过程中忽略了细微的特征，根据中心极限定理，残差项应该服从正常状态的分布：高斯分布（均值为0，方差为$\sigma^2$）<br>&ensp;&ensp;&ensp;&ensp;已知$\varepsilon$服从正太分布，正太分布的参数是移植的，根据最大似然估计，反推$\theta$.<br>$\varepsilon$服从正太分布，用概率表示为：</p>
+<script type="math/tex; mode=display">p(\varepsilon^{(i)})=\frac{1}{\sqrt{2\pi \sigma}}exp(-\frac{(\varepsilon^{(i)})^2}{2\sigma^2})</script><script type="math/tex; mode=display">p(y^{(i)}|x{(i)};\theta)=\frac{1}{\sqrt{2\pi \sigma}}exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})</script><p>似然函数表示为：</p>
+<script type="math/tex; mode=display">L(\theta)=\prod_{i=1}^mp(y^{(i)}|x^{(i)};\theta)=\prod_{i=1}^m\frac{1}{\sqrt{2\pi \sigma}}exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})</script><p>对数似然函数表示为：</p>
+<script type="math/tex; mode=display">l(\theta)=log L(\theta)=log\prod_{i=1}^mp(y^{(i)}|x^{(i)};\theta)</script><script type="math/tex; mode=display">=log\prod_{i=1}^m\frac{1}{\sqrt{2\pi \sigma}}exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})</script><script type="math/tex; mode=display">=\sum_{i=0}^mlog\frac{1}{\sqrt{2\pi \sigma}}exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})</script><script type="math/tex; mode=display">=mlog\frac{1}{\sqrt{2\pi \sigma}}-\frac{1}{\sigma^2}·\frac12\sum_{i=1}^m(y^{(i)}-\theta^Tx^{(i)})^2</script><p>在上述数学式字当中，$\sigma$是常数，要想求得$l(\theta)$取得最大，则$\frac12\sum_{i=1}^m(y^{(i)}-\theta^Tx^{(i)})^2$需要取得最小值，因此得出最小二乘法的目标函数。<br>在线性回归中，可以得出损失函数，即所谓的目标函数是：</p>
+<script type="math/tex; mode=display">\bf{J(\theta)=\frac12\sum_{i=1}^m(y^{(i)}-\theta^Tx^{(i)})^2}</script><h2 id="目标函数计算"><a href="#目标函数计算" class="headerlink" title="目标函数计算"></a>目标函数计算</h2><p>线性回归目标函数：</p>
+<script type="math/tex; mode=display">\bf{J(\theta)=\frac12\sum_{i=1}^m(y^{(i)}-\theta^Tx^{(i)})^2}</script><p>用矩阵形式表示为：</p>
+<script type="math/tex; mode=display">\bf{J(\theta)=\frac12(X\theta-y)^T (X\theta-y)}</script><p>我们的目标是计算在$\theta$取何值时，目标函数$J(\theta)$取得最小值。对于凸函数来说，可以将求最小值问题转化为求驻点问题，对$\theta$求偏导，求等于目标函数的梯度：</p>
+<script type="math/tex; mode=display">\nabla_{\theta}J(\theta)=\nabla_{\theta}(\frac12(X\theta-y)^T(X\theta-y))</script><script type="math/tex; mode=display">=\nabla_{\theta}(\frac12(\theta^TX^T-y^T)(X\theta-y))</script><script type="math/tex; mode=display">=\nabla_{\theta}(\frac12(\theta^TX^TX\theta-\theta^TX^Ty-y^TX\theta+y^Ty))</script><script type="math/tex; mode=display">=\frac12(2X^TX\theta-X^Ty-(y^TX)^T)=X^TX\theta-X^Ty</script><p>求驻点,若$X^TX$可逆，得：</p>
+<script type="math/tex; mode=display">\theta=(X^TX)^{(-1)}X^Ty</script><p>若$X^TX$不可逆或者是防止过拟合加入$\lambda$扰动可得：</p>
+<script type="math/tex; mode=display">\theta=(X^TX+\lambda I)^{(-1)}X^Ty</script><p>补充：<br>$X^TX$是半正定的，对于任意的非零向量$u$:</p>
+<script type="math/tex; mode=display">u^TX^TXu=(Xu)^TXu\ge0</script><p>加入扰动因子之后，$X^TX+\lambda I$是正定的，正定一定可逆。</p>
+<h2 id="修正目标函数-Ridge-amp-LASSO"><a href="#修正目标函数-Ridge-amp-LASSO" class="headerlink" title="修正目标函数:Ridge&amp;LASSO"></a>修正目标函数:Ridge&amp;LASSO</h2><p>&ensp;&ensp;&ensp;&ensp;有的时候，为了使目标函数尽可能的小，利用数据的高阶组合来达到这样的目的，但是这样导致的后果就是系数的值很大，过拟合，为了避免出现过拟合情况，会引入惩罚项因子$\lambda$。</p>
+<h3 id="Ridge"><a href="#Ridge" class="headerlink" title="Ridge"></a>Ridge</h3><p>&ensp;&ensp;&ensp;&ensp;Ridge是在优化过程的目标函数中使用L2 penalty,旨在把系数变小一些，但并非完全为0。通俗点理解，就是给原先的目标函数加一个约束条件，让各个系数的平方和小于某一个数（即规定范围为一个圆），求带有约束条件的极小值问题一般用拉格朗日乘子法。最终体现在数学表达式上，就是：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac12\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2+\lambda\sum_{j=1}^n\theta_j^2</script><p>对目标函数求梯度，即可得到之前，加入扰动因子所得到的对$\theta$的估计：</p>
+<script type="math/tex; mode=display">\theta=(X^TX+\lambda I)^{(-1)}X^Ty</script><h3 id="LASSO"><a href="#LASSO" class="headerlink" title="LASSO"></a>LASSO</h3><p>&ensp;&ensp;&ensp;&ensp;LASSO是在优化过程的目标函数中使用L1 penalty。LASSO不同于Ridge，它给原先求得的目标函数加的约束条件，是让各个系数的绝对值小于某一个数（范围是一个菱形），因为约束域有棱有角，所以有些系数会变为0，实现了特征选择的能力。其数学表达式可以为：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac12\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2+\lambda \sum_{j=0}^m|\theta_j|</script><h3 id="Elastic-Net"><a href="#Elastic-Net" class="headerlink" title="Elastic Net"></a>Elastic Net</h3><p>&ensp;&ensp;&ensp;&ensp;在实际工程上，Ridge在一些评价标准上优于LASSO，但是没有特征选择能力，因此，有人引入Elastic Net，用来折中LASSO和Ridge。数学表达式：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac12\sum_{i=0}^m(h_{\theta}(x^{(i)})-y^{(i)})^2+\lambda(\rho\sum_{j=1}^m|\theta_j|+(1-\rho)\sum_{j=0}^m\theta_j^2)</script><p><strong>问题1：采用L1 penalty，如何处理梯度呢?</strong></p>
+<h2 id="参数和超参数"><a href="#参数和超参数" class="headerlink" title="参数和超参数"></a>参数和超参数</h2><p>&ensp;&ensp;&ensp;&ensp;参数($\theta$)估计：可以根据训练样本求得$\theta$，得到模型。<br>&ensp;&ensp;&ensp;&ensp;超参数($\lambda$)选择：超参数就是参数的参数，给了超参数，参数可以求出来，超参数是无法根据样本求得的，人为可以选定候选集。根据超参数候选集，可以得出候选参数，进而可以在验证集上根据某种机器学习的评价指标，比如上一个博客所提到的SSE挑选效果较好的参数所对应的超参数，最终得到模型的参数和超参数。<br>&ensp;&ensp;&ensp;&ensp;交叉验证：拿十折交叉验证来说，就是将训练集分为10份，九份用来训练，一份用来验证，每一份样本都会有一次当做验证数据，最终取平均值，来看效果。  </p>
+<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>&ensp;&ensp;&ensp;&ensp;高维空间中的矩阵逆运算是复杂的，作为机器学习系列的博客，参数可以采用梯度下降算法来不断求得。</p>
+<h3 id="算法流程："><a href="#算法流程：" class="headerlink" title="算法流程："></a>算法流程：</h3><ol>
+<li>随机初始化$\theta$</li>
+<li>沿着梯度方向(在某点增长最快的方向)的负方向不断迭代，使得更新后的目标函数$J(\theta)$更小，$\theta$的更新公式：<script type="math/tex; mode=display">\theta=\theta-\alpha·\frac{\partial J(\theta)}{\partial \theta}</script>其中$\alpha$是学习率。<br>&ensp;&ensp;&ensp;&ensp;采用梯度下降算法求1-100的平方根，点击代码下载。<h3 id="批量梯度下降"><a href="#批量梯度下降" class="headerlink" title="批量梯度下降"></a>批量梯度下降</h3>&ensp;&ensp;&ensp;&ensp;在这个算法中，每次更新需要用到所有的训练样本。更新公式可以表示为：<script type="math/tex; mode=display">\theta_j=\theta_j-\alpha\sum_{i=0}^m(h_{\theta}(x^{(i)})-y^{(i)})x_j^{(i)}</script><h3 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h3>&ensp;&ensp;&ensp;&ensp;在这个算法中，每次更新只用到一个训练样本。更新公式：<script type="math/tex; mode=display">\theta_j=\theta_j-\alpha(h_{\theta}(x^{(i)})-y^{(i)})x_j^{(i)}</script>&ensp;&ensp;&ensp;&ensp;随机梯度下降和批量梯度下降都有各自的优缺点，在训练速度方面，随机梯度下降更快，在准确度方面，随机梯度下降导致解很有可能不是最优。因此一个比较这种的方法是mini-batch梯度下降。<h3 id="mini-batch梯度下降"><a href="#mini-batch梯度下降" class="headerlink" title="mini-batch梯度下降"></a>mini-batch梯度下降</h3>&ensp;&ensp;&ensp;&ensp;在这个算法中，选用一部分样本的平均梯度作为更新方向。更新公式：<script type="math/tex; mode=display">\theta_j=\theta_j-\alpha\sum_{i=0}^t(h_{\theta}(x^{(i)})-y^{(i)})x_j^{(i)}</script><h2 id="LinearModel-python版应用代码"><a href="#LinearModel-python版应用代码" class="headerlink" title="LinearModel python版应用代码"></a>LinearModel python版应用代码</h2><strong> <font color="#AA4F4F">更多详细代码请参考个人github代码仓库<br><a href="https://github.com/MichelleYang2017/BlogCode" target="_blank" rel="noopener">https://github.com/MichelleYang2017/BlogCode</a></font></strong><h3 id="LinearRegression-代码"><a href="#LinearRegression-代码" class="headerlink" title="LinearRegression 代码"></a>LinearRegression 代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="keyword">import</span>  numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    filepath=<span class="string">'./Data/Advertising.csv'</span></span><br><span class="line">    data=pd.read_csv(filepath)<span class="comment">#读取数据</span></span><br><span class="line">    X=data[[<span class="string">'TV'</span>,<span class="string">'Radio'</span>,<span class="string">'Newspaper'</span>]]</span><br><span class="line">    y=data[<span class="string">'Sales'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment">#用来显示正常中文标签</span></span><br><span class="line">    mpl.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'simHei'</span>]</span><br><span class="line">    <span class="comment">#用来显示正常负号</span></span><br><span class="line">    mpl.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=<span class="number">0.2</span>,random_state=<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># print(X_train.shape,X_test.shape)</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    fit_intercept是否有截距</span></span><br><span class="line"><span class="string">    normalize:是否将数据归一化，减去均值/L2</span></span><br><span class="line"><span class="string">    copy_X:当True时，X将会被copied,否则将X将会被覆写。</span></span><br><span class="line"><span class="string">    n_jobs：默认值为1，指定训练时用的CPU资源。</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment">#LinearRegression(fit_intercept=True,normalize=False,copy_X=True,n_jobs=1)</span></span><br><span class="line">    model=LinearRegression()</span><br><span class="line">    <span class="comment">#用训练数据拟合模型</span></span><br><span class="line">    model.fit(X_train,y_train)</span><br><span class="line">    <span class="comment">#输出模型的相关因子和截距</span></span><br><span class="line">    print(model.coef_,model.intercept_)</span><br><span class="line">    print(model.get_params())<span class="comment">#查看模型的参数</span></span><br><span class="line">    y_hat=model.predict(X_test)</span><br><span class="line">    mse=np.average((y_hat-y_test)**<span class="number">2</span>)</span><br><span class="line">    rmse=np.sqrt(mse)</span><br><span class="line">    print(<span class="string">'mse:'</span>,mse)</span><br><span class="line">    print(<span class="string">'rmse'</span>,rmse)</span><br><span class="line">    print(<span class="string">"Train R2=:"</span>,model.score(X_train,y_train))<span class="comment">#返回R^2</span></span><br><span class="line">    print(<span class="string">"Test R2=:"</span>,model.score(X_test,y_test))</span><br><span class="line"></span><br><span class="line">    plt.figure(facecolor=<span class="string">'w'</span>)</span><br><span class="line">    t=np.arange(len(X_test))</span><br><span class="line">    plt.plot(t,y_test,<span class="string">'r-'</span>,label=<span class="string">'真实数据'</span>,lw=<span class="number">2</span>)</span><br><span class="line">    plt.plot(t,y_hat,<span class="string">'g-'</span>,lw=<span class="number">2</span>,label=<span class="string">'预测数据'</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">    plt.title(<span class="string">'线性回归预测销量'</span>,fontsize=<span class="number">18</span>)</span><br><span class="line">    plt.grid(b=<span class="keyword">True</span>,ls=<span class="string">':'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Lasso-Ridge代码"><a href="#Lasso-Ridge代码" class="headerlink" title="Lasso/Ridge代码"></a>Lasso/Ridge代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression,Lasso,Ridge</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split,GridSearchCV</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    data=pd.read_csv(<span class="string">'./Data/Advertising.csv'</span>)</span><br><span class="line">    X=data[[<span class="string">'TV'</span>,<span class="string">'Radio'</span>,<span class="string">'Newspaper'</span>]]</span><br><span class="line">    y=data[<span class="string">'Sales'</span>]</span><br><span class="line">    <span class="comment">#将数据集和训练集分开</span></span><br><span class="line">    X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=<span class="number">0.3</span>,random_state=<span class="number">1</span>)</span><br><span class="line">    model=Lasso()</span><br><span class="line">    <span class="comment"># model=Ridge()</span></span><br><span class="line">    <span class="comment"># model=LinearRegression()</span></span><br><span class="line">    <span class="comment">#超参数的候选值，-3~2选10个值</span></span><br><span class="line">    alpha=np.logspace(<span class="number">-3</span>,<span class="number">2</span>,<span class="number">10</span>)</span><br><span class="line">    <span class="comment">#不用科学计数法</span></span><br><span class="line">    np.set_printoptions(suppress=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment">#网格搜索法，为了选取超参数而进行交叉验证</span></span><br><span class="line">    lasso_model=GridSearchCV(model,param_grid=&#123;<span class="string">'alpha'</span>:alpha&#125;,cv=<span class="number">10</span>)</span><br><span class="line">    <span class="comment">#拟合训练数据</span></span><br><span class="line">    lasso_model.fit(X_train,y_train)</span><br><span class="line">    <span class="comment">#打印出模型的所有参数</span></span><br><span class="line">    print(<span class="string">"参数:"</span>,lasso_model.get_params())</span><br><span class="line">    <span class="comment">#打印出模型的超参数</span></span><br><span class="line">    print(<span class="string">'超参数'</span>,lasso_model.best_params_)</span><br><span class="line"></span><br><span class="line">    order=y_test.argsort(axis=<span class="number">0</span>)</span><br><span class="line">    y_test=y_test.values[order]</span><br><span class="line">    x_test=X_test.values[order,:]</span><br><span class="line">    y_hat=lasso_model.predict(x_test)</span><br><span class="line">    print(lasso_model.score(x_test,y_test))<span class="comment">#返回的是R^2</span></span><br><span class="line">    mse=np.average((y_hat-y_test)**<span class="number">2</span>)</span><br><span class="line">    rmse=mse*<span class="number">1</span>/<span class="number">2</span></span><br><span class="line">    print(mse,rmse)</span><br><span class="line"></span><br><span class="line">    t=np.arange(len(X_test))</span><br><span class="line">    <span class="comment"># 用来显示正常中文标签</span></span><br><span class="line">    mpl.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'simHei'</span>]</span><br><span class="line">    <span class="comment"># 用来显示正常负号</span></span><br><span class="line">    mpl.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span></span><br><span class="line">    plt.figure(facecolor=<span class="string">'w'</span>)</span><br><span class="line">    plt.plot(t, y_test, <span class="string">'r-'</span>, label=<span class="string">'真实数据'</span>, lw=<span class="number">2</span>)</span><br><span class="line">    plt.plot(t, y_hat, <span class="string">'g-'</span>, lw=<span class="number">2</span>, label=<span class="string">'预测数据'</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">    plt.title(<span class="string">'线性回归预测销量'</span>, fontsize=<span class="number">18</span>)</span><br><span class="line">    plt.grid(b=<span class="keyword">True</span>, ls=<span class="string">':'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ol>
+<li><p>矩阵对向量求偏导：<br><strong>A</strong>为$m×n$的矩阵,$\vec x$为$n×1$的列向量，则$A\vec x$为m×1的列向量，记做$\vec y$=$A\vec x$<br>思考：$\frac{\partial \vec y}{\partial \vec x}=?$</p>
+<script type="math/tex; mode=display">A\vec x=\begin{bmatrix}
+a_{11}&a_{12}&\cdots &a_{1n}\\
+a_{21}&a_{22}&\cdots &a_{2n}\\
+\vdots &\vdots &\ddots &\vdots\\
+a_{m1}&a_{m2}&\cdots &a_{mn}\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_m\\
+\end{bmatrix}
+=\begin{bmatrix}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n\\
+a_{21}x_2+a_{22}x_2+\cdots+a_{2n}x_n\\
+\vdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots +a_{mn}x_n\\
+\end{bmatrix}</script><p>首先考虑矩阵$A$先对$x_1$求偏导得到第一行，以此类推一直得到得到第$m$行,因而，</p>
+<script type="math/tex; mode=display">\frac{\partial \vec y}{\partial \vec x}=
+\begin{bmatrix}
+a_{11}&a_{21}&\cdots&a_{n1}\\
+a_{12}&a_{22}&\cdots&a_{n2}\\
+\vdots &\vdots &\ddots &\vdots\\
+a_{1m}&a_{2m}&\cdots&a_{nm}\\
+\end{bmatrix}=A^T</script><p>结论推广：<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;$\frac{\partial A\vec x}{\partial x}=A^T$&ensp;&ensp;$\frac{\partial A\vec x}{\partial x^T}=A$&ensp;&ensp;$\frac{\partial {\vec x}^T A}{\partial x}=A$   </p>
+</li>
+<li><p>标量对向量的导数<br>$A$为$n×n$的对称阵($A^T=A$),$\vec x$为$n×1$的列向量,记做$y$=$A\vec x$,则</p>
+<script type="math/tex; mode=display">\frac{\partial y}{\partial \vec x}=\frac{\vec x^T·A·\vec x}{\partial \vec x}=(A^T+A)·\vec x=2A\vec x</script><p>推导：</p>
+<script type="math/tex; mode=display">\vec x^TA\vec x=\begin{pmatrix}x_1&x_2&\cdots&x_n\end{pmatrix}\begin{pmatrix}\sum_{j=1}^n a_{1j}x_j&\sum_{j=1}^n a_{2j}x_j&\cdots&\sum_{j=1}^n a_{nj}x_j\end{pmatrix}^T</script><script type="math/tex; mode=display">=\sum_{i=1}^n((\sum_{j=1}^n a_{ij}x_j )x_i)=\sum_{i=1}^n \sum_{j=1}^n a_{ij}x_ix_j</script><p>则得到如下结论，其中一项可以看做是对第i行的求偏导，一项可以看做是对i列的求偏导：</p>
+<script type="math/tex; mode=display">\frac{(\vec x^TA\vec x)}{x_i}=\sum_{j=1}^na_{ij}x_j+\sum_{j=1}^na_{ji}x_j=\sum_{j=1}^n(a_{ij}+a_{ji})x_j</script></li>
+<li><p>标量对方阵求导数：<br>$A$为$n×n$的矩阵,$|A|$为$A$的行列式,计算$\frac{\partial |A|}{A}$.<br>计算：根据行列式的计算公式，对于$\forall 1\le i\le n$,$|A|=\sum_{j=0}^na_{ij}(-1)^{i+j}M_{ij}$,其中，$M_{ij}$是$a_{ij}$的代数余子式。<br>则有：</p>
+<script type="math/tex; mode=display">\frac{\partial |A|}{\partial a_{ij}}=\frac{\partial \sum_{j=0}^na_{ij}(-1)^{i+j}M_{ij} }{\partial a_{ij}}=(-1)^{i+j}M_{ij}=A_{ji}^{\*}</script><p>并且$A·A*=|A|·I$,从而:$\frac{\partial |A|}{\partial A}=(A^*)^T=|A|(A^{-1})^T$</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><script type="math/tex">x^{(i)}</script>代表的是样本的特征<br><script type="math/tex">y^{(i)}</script>代表的是第$n$个样本的$label$，可离散可连续<br><script type="math/tex">\theta_i</script>代表的某个样本中第$i$个数据的参数</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p>邹博.机器学习<br><a href="https://blog.csdn.net/uestc_c2_403/article/details/74910107" target="_blank" rel="noopener">三种梯度下降方式比较</a><br><a href="https://www.zhihu.com/question/38426074" target="_blank" rel="noopener">L1 L2范数最优化过程-知乎</a></p>
+</blockquote>
+</li>
+</ol>
+
       
     </div>
     
@@ -482,6 +566,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/线性回归/" rel="tag"><i class="fa fa-tag"></i> 线性回归</a>
+          
+        </div>
+      
 
       
       
@@ -500,6 +592,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/10/机器学习之logistic回归/" rel="prev" title="机器学习之logistic回归">
+                机器学习之logistic回归 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -561,8 +657,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -571,7 +676,7 @@
                 alt="Michelle Yang" />
             
               <p class="site-author-name" itemprop="name">Michelle Yang</p>
-              <p class="site-description motion-element" itemprop="description">所有的为时已晚都是开始的最好时候</p>
+              <p class="site-description motion-element" itemprop="description">向内认知，向外行走。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -581,7 +686,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -603,7 +708,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -648,6 +753,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归初识"><span class="nav-number">1.</span> <span class="nav-text">线性回归初识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归目标函数"><span class="nav-number">2.</span> <span class="nav-text">线性回归目标函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念"><span class="nav-number">2.1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中心极限定理"><span class="nav-number">2.1.1.</span> <span class="nav-text">中心极限定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大似然估计"><span class="nav-number">2.1.2.</span> <span class="nav-text">最大似然估计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘目标函数推导"><span class="nav-number">2.2.</span> <span class="nav-text">最小二乘目标函数推导</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标函数计算"><span class="nav-number">3.</span> <span class="nav-text">目标函数计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修正目标函数-Ridge-amp-LASSO"><span class="nav-number">4.</span> <span class="nav-text">修正目标函数:Ridge&amp;LASSO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ridge"><span class="nav-number">4.1.</span> <span class="nav-text">Ridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LASSO"><span class="nav-number">4.2.</span> <span class="nav-text">LASSO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elastic-Net"><span class="nav-number">4.3.</span> <span class="nav-text">Elastic Net</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数和超参数"><span class="nav-number">5.</span> <span class="nav-text">参数和超参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降算法"><span class="nav-number">6.</span> <span class="nav-text">梯度下降算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法流程："><span class="nav-number">6.1.</span> <span class="nav-text">算法流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量梯度下降"><span class="nav-number">6.2.</span> <span class="nav-text">批量梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机梯度下降"><span class="nav-number">6.3.</span> <span class="nav-text">随机梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mini-batch梯度下降"><span class="nav-number">6.4.</span> <span class="nav-text">mini-batch梯度下降</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinearModel-python版应用代码"><span class="nav-number">7.</span> <span class="nav-text">LinearModel python版应用代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LinearRegression-代码"><span class="nav-number">7.1.</span> <span class="nav-text">LinearRegression 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lasso-Ridge代码"><span class="nav-number">7.2.</span> <span class="nav-text">Lasso/Ridge代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">8.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">9.</span> <span class="nav-text">附录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -724,7 +845,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.6k字</span>
+  <span class="post-count">博客全站共19.3k字</span>
 </div>
 
         
@@ -869,24 +990,7 @@
         s.src = 'https://michelle18.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+      </script>
     
 
   
@@ -931,6 +1035,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

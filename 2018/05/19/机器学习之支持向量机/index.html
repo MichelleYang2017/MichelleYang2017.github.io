@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="7XAJS-oOL3lrJyBUDp01FyRpahnQp3a0xj4-zRXAIeU" />
+<meta name="baidu-site-verification" content="dCyUeK4OMf" />  
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.google.com//css?family=Roboto Slab:300,300italic,400,400italic,700,700italicLobster Two:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,支持向量机," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。">
+<meta name="keywords" content="机器学习,支持向量机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之支持向量机">
+<meta property="og:url" content="https://michelleyang2017.github.io/2018/05/19/机器学习之支持向量机/index.html">
+<meta property="og:site_name" content="Michelle">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://michelleyang2017.github.io/img/geometric_margin.png">
+<meta property="og:updated_time" content="2018-05-31T01:31:47.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习之支持向量机">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。">
+<meta name="twitter:image" content="https://michelleyang2017.github.io/img/geometric_margin.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://michelleyang2017.github.io/2018/05/19/机器学习之支持向量机/"/>
+
+
+
+
+
+  <title>机器学习之支持向量机 | Michelle</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/MichelleYang2017"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michelle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">千里之行，始于足下。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michelleyang2017.github.io/2018/05/19/机器学习之支持向量机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michelle Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/image.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michelle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习之支持向量机</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-19T14:38:55+08:00">
+                2018-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/19/机器学习之支持向量机/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/19/机器学习之支持向量机/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,503
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+          
+          
+		  <span>&nbsp; | &nbsp;
+          <span id="busuanzi_value_page_pv" ></span>次阅读
+          </span>    
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+   
+
+      
+      
+
+      
+        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。<br><a id="more"></a><br>&ensp;&ensp;&ensp;&ensp;支持向量机学习方法包含构建由简至繁模型：线性可分支持向量机、线性支持向量机以及非线性支持向量机。</font></p>
+<h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;线性可分支持向量机(linear support vector machine in linearly separable case)主要用于给定的训练数据是线性可分的，通过硬间隔最大化，来学习一个线性分类器实现数据的分类。</p>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>&ensp;&ensp;&ensp;&ensp;给定线性可分的训练数据集，我们学习的目标是在特征空间中找到一个分离超平面，能将数据分到不同的平面中。通过间隔最大化或等价地求解相应的凸二次规划问题学习到的超平面为</p>
+<script type="math/tex; mode=display">w·x+b=0</script><p>该超平面是由平面的法向量$w$和截距$b$决定的。该平面相对应的决策函数$f(x)=sign(w·x+b)$称为线性可分支持向量机。<br>根据题设，针对二分类问题:$y(x)=w·x+b$<br>有：</p>
+<script type="math/tex; mode=display">
+        \begin{cases}
+         y(x_i) \ge 0===y_i=+1 \\
+        y(x_i) \le 0===y_i=-1
+        \end{cases}</script><p>即，$y_i·y(x_i)\ge 0$</p>
+<h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><p><strong>函数间隔</strong><br>&ensp;&ensp;&ensp;&ensp;一个点距离超平面的远近可以表示分类预测的确信程度，函数间隔用$y(w·x+b)$量化。<br><strong>几何间隔</strong><br>&ensp;&ensp;&ensp;&ensp;函数间隔除以$||w||$,具体来推导一下，设几何间隔为图中的$\gamma$：<br><img src="/img/geometric_margin.png" alt=""></p>
+<script type="math/tex; mode=display">x=x_0+\gamma\frac{w}{||w||}</script><p>两边同时乘以$w^T$得：<br>\begin{equation}\begin{split}w^Tx&amp;=w^Tx_0+\gamma\frac{w^Tw}{||w||}\\\\<br>&amp;=-b+\gamma ||w||\\\\<br>\end{split}\end{equation}可以得到几何间隔：</p>
+<script type="math/tex; mode=display">\gamma=\frac{w^Tx+b}{||w||}=\frac{f(x)}{||w||}</script><p>为了得到$\gamma$的绝对值，乘以对应类别，可得：</p>
+<script type="math/tex; mode=display">\gamma=\frac{w^Tx+b}{||w||}=\frac{yf(x)}{||w||}</script><p><strong> 支持向量 </strong><br>&ensp;&ensp;&ensp;&ensp;在线性可分的情况下，训练数据集中的样本点与分离超平面距离最近的样本点的实例称之为支持向量。支持向量使得下面的公式成立：</p>
+<script type="math/tex; mode=display">y_i(wx_i+b)-1=0</script><h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>支持向量机学习的基本思想就是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。</strong>对于线性可分的数据集，线性可分分离的超平面有无穷个，但是几何间隔最大的最大的分离超平面是唯一的。几何间隔最大的超平面可以对最难分的点，也就是距离超平面最近的点分割的很开，即有足够的确信度将它们分开。因此，我们建立目标函数为：</p>
+<script type="math/tex; mode=display">arg\max\{\min(\frac{y_i(w^Tx_i+b)}{||w||}\}</script><p>在这里我们可以通过等比例缩放，使得$\min(y_i(w^Tx_i+b))$为1，则目标函数可以转化为：</p>
+<script type="math/tex; mode=display">arg\max\frac1{||w||},s.t.y_i(w^Tx_i+b) \ge 1,i=1,2,…,n</script><p>该目标函数等价于</p>
+<script type="math/tex; mode=display">\min\frac12||w||^2,s.t.y_i(w^Tx_i+b) \ge 1,i=1,2,…,n</script><p>带有约束问题的极值问题，我们一般通过拉格朗日乘子法来求：</p>
+<script type="math/tex; mode=display">L(w,b,\alpha)=\frac12||w||^2-\sum_{i=1}^n\alpha_i(y_i(w^Tx+b)-1)\tag{1}</script><p>原问题是极小极大问题:</p>
+<script type="math/tex; mode=display">\min\limits_{w,b} \max_{\alpha}L(w,b,\alpha)</script><p>应用拉格朗日的对偶性，将原始问题变化成其对偶问题，变成极大极小问题。</p>
+<script type="math/tex; mode=display">\max\limits_{\alpha}\min_{w,b} L(w,b,\alpha)</script><p>求解对偶问题，需要先求$L(w,b,\alpha)$对$w$、$b$的极小，再求对$\alpha$的极大。<br>(1)$\min\limits_{w,b}L(w,b,\alpha)$<br>对$w$、$b$求偏导，令其等于0.</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial w}=w-\sum_{i=1}^N\alpha_i^Ny_ix_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_i^Ny_i=0</script><p>解得：</p>
+<script type="math/tex; mode=display">w=\sum_{i=1}^N\alpha_iy_ix_i\tag{2}</script><script type="math/tex; mode=display">\sum_{i=1}^N\alpha_iy_i=0\tag{3}</script><p>将(2)带入拉格朗日函数(1)，结合公式(3)，(1)可以表示为：<br>\begin{equation}\begin{split}L(w,b,\alpha)&amp;=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^N\alpha_iy_i((\sum_{j=1}^N\alpha_jx_jx_j)x_i+b)+\sum_{i=1}^N\alpha_i\\\\<br>&amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i<br>\end{split}\end{equation}即：</p>
+<script type="math/tex; mode=display">\min\limits_{w,b}L(w,b,\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i</script><p>(2)求$\min\limits_{w,b}L(w,b,\alpha)$对$\alpha$的极大：</p>
+<script type="math/tex; mode=display">\max\limits_{\alpha}\sum_{i=1}^n\alpha_i-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0,\alpha_i \ge 0,i=1,2,…,n</script><p>整理目标函数，添加符号，得目标函数</p>
+<script type="math/tex; mode=display">\min\limits_{\alpha}\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^n\alpha_i</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0,\alpha_i \ge 0,i=1,2,…,n</script><p>同样，采用根据拉格朗日乘子法，可以求解出最优解$\alpha^*$</p>
+<h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;线性支持向量机(linear support vector machine)主要用于给定的训练数据是线性不可分的，通过软间隔最大化，来学习一个线性分类器实现数据的分类。</p>
+<h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p>&ensp;&ensp;&ensp;&ensp;对于线性不可分的数据，如果是因为数据有噪音而使得数据是非线性结构，使用上述算法是不行的，现象不可分意味着某些样本点不能满足函数间隔大于等于1的约束条件。正是由于噪声的存在，使得超平面有点偏斜，为了解决这个问题，允许数据点在一定程度上偏离超平面，我们引入了松弛因子$\xi_i \ge 0$,使得函数间隔加上松弛变量大于等于1，这样约束条件变成：</p>
+<script type="math/tex; mode=display">y_i(wx_i+b) \ge 1-\xi_i</script><p>同时，我们还需要在原来的目标函数后面加上一项，使得这些$\xi_i$的综合也要最小:</p>
+<script type="math/tex; mode=display">\min \frac12||w||^2+C\sum_{i=1}^n\xi_i</script><p>$C&gt;0$成为惩罚参数，是超参数，人为设定，最小化目标函数包含两层含义：使得$\frac12||w||^2$尽量小即间隔尽量大，同时使错误分类的点的个数要尽可能的少。</p>
+<h3 id="目标函数-1"><a href="#目标函数-1" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;线性不可分的线性支持向量机的学习问题又变成了一个凸二次优化的问题：</p>
+<script type="math/tex; mode=display">\min\limits_{w,b,\xi}\frac12||w||^2+C\sum_{i=1}^N \xi_i</script><script type="math/tex; mode=display">s.t. y_i(wx_i+b)\ge1-\xi_i,i=1,2,…,N;\xi_i \ge 0,i=1,2,…,N</script><p>同样地，采用拉格朗日乘子法来求极值问题，原始问题的拉格朗日函数是：</p>
+<script type="math/tex; mode=display">L(w,b,\xi,\alpha,\mu)=\frac12||w||^2+C\sum_{i=1}^N\xi_i-\sum_{i=1}^n\alpha_i(y_i(w^Tx+b)-1+\xi_i)-\sum_{i=1}^N\mu_i\xi_i\tag{4}</script><p>(1)$\min\limits_{w,b}L(w,b,\alpha)$<br>对$w$、$b$、$\xi$求偏导，令其等于0.</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial w}=w-\sum_{i=1}^N\alpha_i^Ny_ix_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_i^Ny_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial \xi}=C-\alpha_i-\mu_i=0</script><p>解得：</p>
+<script type="math/tex; mode=display">w=\sum_{i=1}^N\alpha_iy_ix_i\tag{5}</script><script type="math/tex; mode=display">\sum_{i=1}^N\alpha_iy_i=0\tag{6}</script><script type="math/tex; mode=display">C=\alpha_i+\mu_i\tag{7}</script><p>将(5)(6)(7)带入拉格朗日函数(4)，(4)可以表示为：<br>\begin{equation}\begin{split}L(w,b,\xi,\alpha,\mu)&amp;=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^N\alpha_iy_i((\sum_{j=1}^N\alpha_jx_jx_j)x_i+b)+\sum_{i=1}^N\alpha_i\\\\<br>&amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i<br>\end{split}\end{equation}即：</p>
+<script type="math/tex; mode=display">\min\limits_{w,b}L(w,b,\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i</script><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;非线性支持向量机(linear support vector machine)主要用于给定的训练数据是非线性的，通过核函数将原始数据映射到更高维的空间，来学习一个分类器实现数据的分类。</p>
+
+      
+    </div>
+    
+    
+    
+	
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Michelle Yang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://michelleyang2017.github.io/2018/05/19/机器学习之支持向量机/" title="机器学习之支持向量机">https://michelleyang2017.github.io/2018/05/19/机器学习之支持向量机/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    
+
+
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/pay/wechatpay.png" alt="Michelle Yang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/pay/alipay.jpg" alt="Michelle Yang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/支持向量机/" rel="tag"><i class="fa fa-tag"></i> 支持向量机</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/17/机器学习之提升方法/" rel="next" title="机器学习之提升方法">
+                <i class="fa fa-chevron-left"></i> 机器学习之提升方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/27/机器学习之聚类算法/" rel="prev" title="机器学习之聚类算法">
+                机器学习之聚类算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/image.jpg"
+                alt="Michelle Yang" />
+            
+              <p class="site-author-name" itemprop="name">Michelle Yang</p>
+              <p class="site-description motion-element" itemprop="description">向内认知，向外行走。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MichelleYang2017" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MichelleYang2017@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/MichelleYang018" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.</span> <span class="nav-text">线性可分支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">1.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念"><span class="nav-number">1.2.</span> <span class="nav-text">几个概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">1.3.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-number">2.</span> <span class="nav-text">线性支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数-1"><span class="nav-number">2.2.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-number">3.</span> <span class="nav-text">非线性支持向量机</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michelle Yang</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<span>　<i class="fa fa-bomb"></i></span>
+<span id="showDays"></span>
+
+
+-->
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2018,04,18,16,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://michelle18.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://michelleyang2017.github.io/2018/05/19/机器学习之支持向量机/';
+          this.page.identifier = '2018/05/19/机器学习之支持向量机/';
+          this.page.title = '机器学习之支持向量机';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://michelle18.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

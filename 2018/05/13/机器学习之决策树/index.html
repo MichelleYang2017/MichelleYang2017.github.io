@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="7XAJS-oOL3lrJyBUDp01FyRpahnQp3a0xj4-zRXAIeU" />
+<meta name="baidu-site-verification" content="dCyUeK4OMf" />  
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.google.com//css?family=Roboto Slab:300,300italic,400,400italic,700,700italicLobster Two:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,决策树," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;决策树(Decision Tree)是一种树形结构，是基本的分类和回归方法，是一种监督学习算法。决策树学习通常包含3个步骤：特征选择、决策树的生成和决策树的剪枝。">
+<meta name="keywords" content="机器学习,决策树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之决策树">
+<meta property="og:url" content="https://michelleyang2017.github.io/2018/05/13/机器学习之决策树/index.html">
+<meta property="og:site_name" content="Michelle">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;决策树(Decision Tree)是一种树形结构，是基本的分类和回归方法，是一种监督学习算法。决策树学习通常包含3个步骤：特征选择、决策树的生成和决策树的剪枝。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://michelleyang2017.github.io/img/v.png">
+<meta property="og:image" content="https://michelleyang2017.github.io/img/tabel.png">
+<meta property="og:image" content="https://michelleyang2017.github.io/img/DT.png">
+<meta property="og:updated_time" content="2018-05-28T00:29:04.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习之决策树">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;决策树(Decision Tree)是一种树形结构，是基本的分类和回归方法，是一种监督学习算法。决策树学习通常包含3个步骤：特征选择、决策树的生成和决策树的剪枝。">
+<meta name="twitter:image" content="https://michelleyang2017.github.io/img/v.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://michelleyang2017.github.io/2018/05/13/机器学习之决策树/"/>
+
+
+
+
+
+  <title>机器学习之决策树 | Michelle</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/MichelleYang2017"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michelle</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">千里之行，始于足下。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michelleyang2017.github.io/2018/05/13/机器学习之决策树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michelle Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/image.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michelle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习之决策树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-13T21:50:17+08:00">
+                2018-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/13/机器学习之决策树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/13/机器学习之决策树/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,792
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+          
+          
+		  <span>&nbsp; | &nbsp;
+          <span id="busuanzi_value_page_pv" ></span>次阅读
+          </span>    
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+   
+
+      
+      
+
+      
+        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;决策树(Decision Tree)是一种树形结构，是基本的分类和回归方法，是一种监督学习算法。决策树学习通常包含3个步骤：特征选择、决策树的生成和决策树的剪枝。<br><a id="more"></a></font></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h3><p>&ensp;&ensp;&ensp;&ensp;在信息论中，熵是表示随机变量不确定性的度量。$X$是取有限个值的离散随机变量，概率分布为：</p>
+<script type="math/tex; mode=display">P(X=x_i)=p_i,i=1,2,3,…,n</script><p>则随机变量$X$的熵定义为：</p>
+<script type="math/tex; mode=display">H(X)=-\sum_{i=1}^np_ilog(p_i)</script><p>如果一个事件结果越不确定，则熵值越大，如果一个事件结果是确定性的，则该事件完全没有不确定性，熵值为0。均匀分布随机变量不确定性最大，熵值最大。</p>
+<h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><p>&ensp;&ensp;&ensp;&ensp;随机变量$(X,Y)$,联合概率分布可以表示为:</p>
+<script type="math/tex; mode=display">P(X=x_i,Y=y_i)=p_{ij},i=1,2,…,n;j=1,2,…,m</script><p>条件熵$H(Y|X)$表示在给定$X$的条件下，$Y$的不确定性，条件熵可以表示为:</p>
+<script type="math/tex; mode=display">H(Y|X)=\sum_{i=1}^np_iH(Y|X=x_i),p_i=P(X=x_i)</script><p>&ensp;&ensp;&ensp;&ensp;<strong>当熵和条件熵中的概率由数据估计得到时，所对应的熵与条件熵分别称之为经验熵和经验条件熵。</strong></p>
+<h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p>&ensp;&ensp;&ensp;&ensp;决策树中，信息增益表示得知特征$X$的信息而使得类信息的不确定性减少的程度。特征$A$对训练数据集$D$的信息增益$g(D,A)$可以定义为集合$D$的经验熵与给定特征$A$条件下的D的经验条件熵$H(D,A)$之差，用数学表达式可以表示为：</p>
+<script type="math/tex; mode=display">g(D,A)=H(D)-H(D|A)</script><p>在统计学中，熵和条件熵的差值成为互信息。决策树学习中的信息增益等价于训练数据集中类与特征的互信息。<br>用强大的Venn图来区分这几个概念。<img src="/img/v.png" alt="">&ensp;&ensp;&ensp;&ensp;其中，$I(X,Y)$代表的是互信息，$H(X|Y)$和$H(Y,X)$代表的是条件熵，$I(X,Y)$代表的是互信息，即信息增益。</p>
+<h3 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h3><p>&ensp;&ensp;&ensp;&ensp;特征$A$对训练数据集$D$的信息增益比$g_R(D,A)$定义为其信息增益$g(D,A)$与训练数据集D关于特征A的值的熵$H_A(D)$之比，用数学表达式可以表示为:</p>
+<script type="math/tex; mode=display">g_R(D,A)=\frac{g(D,A)}{H_A(D)}</script><p>其中，$H_A(D)=-\sum_{i=1}^n\frac{|D_i|}{|D|}log_2\frac{|D_i|}{|D|}$,$n$是特征$A$取值的个数。</p>
+<h3 id="Gini-指数"><a href="#Gini-指数" class="headerlink" title="$Gini$指数"></a>$Gini$指数</h3><p>&ensp;&ensp;&ensp;&ensp;在分类问题中，假设有$K$个类，样本点属于第$K$类的概率为$p_k$,则概率分布的Gini指数可以定义为：</p>
+<script type="math/tex; mode=display">Gini(p)=\sum_{k=1}^Kp_k(1-p_k)=1-\sum_{k=1}^Kp_k^2</script><h4 id="Gini-理解"><a href="#Gini-理解" class="headerlink" title="$Gini$理解"></a>$Gini$理解</h4><p>&ensp;&ensp;&ensp;&ensp;将$f(x)=-lnx$在$x=1$处一阶展开，得到$f(x)$近似等于$1-x$，所以可以认为$Gini$系数是信息增益的近似。<br>&ensp;&ensp;&ensp;&ensp;$Gini$系数是衡量一个国家贫富收入差距的一个主要指标。<a href="https://baike.baidu.com/item/%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0" target="_blank" rel="noopener">基尼系数</a>介于0-1之间，基尼系数越大，表示不平等程度越高。</p>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>&ensp;&ensp;&ensp;&ensp;特征选择主要在于选取对训练数据由分类能力的特征。如果利用一个特征进行分类的结果与随机分类的结果相比没有很大的差别，则称这个特征是没有分类能力的，这样的特征需要被舍弃。特征选择是决定用哪个特征来划分特征空间。在特征选择时，要选用在当前情况下更具有分类能力的特征，在决策树当中通常特征选择通常是采用信息增益、信息增益比或者是Gini指数来度量特征的分类能力。<br>&ensp;&ensp;&ensp;&ensp;决策树学习方法主要是$ID3$、$C4.5$和$CART$算法。针对不同的学习算法有不同的特征选择方法。<br>&ensp;&ensp;&ensp;&ensp;$ID3$：在决策树各个结点上采用信息增益选择特征。<br>&ensp;&ensp;&ensp;&ensp;$C4.5$:$C4.5$是$ID3$的升级版，以信息增益为划分数据集的特征，存在偏向于选择取值较多的特征问题，因此$C4.5$采用信息增益比选择特征，实现校正的目的。<br>&ensp;&ensp;&ensp;&ensp;$CART$:$CART$是在决策树各个结点上采用Gini指数来选择特征。</p>
+<h2 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h2><p>&ensp;&ensp;&ensp;&ensp;决策树学习的算法通常时递归地选择最优特征，并根据该特征对训练数据划分，这一过程通常时对应着对决策树特征空间的划分，也对应着决策树的构建。不同的决策树学习方法，对应着不同的生成办法，但本质是相同的，唯一不同的是决策树选择特征的度量方法不同，即上一节提到的。<br>&ensp;&ensp;&ensp;&ensp;构建过程：开始，构建根节点，将所有训练数据都放在根节点，依据信息增益、信息增益比或者是Gini系数选择一个最优特征，按照这一特征将训练数据集分成不同的子集，如果这些子集已经能够基本被分类正确，那么构建叶节点，并将这些子集划分到所对应的叶节点当中去，如果还有子集不能被基本分类正确，则对这些子集选择新的最优特征，继续讲子集进行划分，构建相应的节点，以此类推，直到每个子集都被分到叶节点上，即都有了明确的分类，那么构建了一颗决策树。<br><strong>举个例子：</strong><br>&ensp;&ensp;&ensp;&ensp;下图中的数据是由15个样本所组成的贷款申请的训练数据，数据包括贷款申请人的4个特征：第一个是年龄，有三个可能值:青年、中年，老年；第二个特征是是否有工作，有两个可能值：是，否；第三个特征事是否有自己的房子，有两个可能的值：是，否；第四个特征是信贷情况，有三个可能值：非常好，好，一般。最后一列是类别，是否同意贷款，有两个可能值：是，否。<br><img src="/img/tabel.png" alt="">&ensp;&ensp;&ensp;&ensp;希望通过所给的训练数据来训练学习一个决策树，对未来的贷款申请进行分类。分别用$ID3$、$CART$以及$C4.5$学习算法来构建一棵决策树。</p>
+<h3 id="ID3"><a href="#ID3" class="headerlink" title="$ID3$"></a>$ID3$</h3><p>&ensp;&ensp;&ensp;&ensp;对图中15个训练样本数据,根据信息增益准则来选择特征，进而递归地选择最优特征，构建一颗决策树。</p>
+<ol>
+<li>计算经验熵$H(D)$:<script type="math/tex; mode=display">H(D)=-\frac{9}{15}log_2\frac{9}{15}-\frac{6}{15}log_2\frac{6}{15}=0.974</script>在这里，15个训练样本中9个同意贷款，6个不同意贷款。</li>
+<li>计算各个特征对数据集的信息增益，分别用$A1$、$A2$、$A3$，$A4$表示年龄、有工作、有自己的房子和信贷情况四个特征，则：<br>\begin{equation}\begin{split} g(D,A1)&amp;=H(D)-H(D|A1)\\\\<br>&amp; =H(D)-[\frac{5}{15}H(D_1)+\frac{5}{15}H(D_2)+\frac{5}{15}H(D_3)]\\\\<br>&amp;=0.974-[\frac{5}{15}(-\frac{2}{5}log_2(\frac{2}{5})-\frac{3}{5}log_2(\frac{3}{5}))\\\\<br>&amp;\quad +\frac{5}{15}(-\frac{2}{5}log_2(\frac{2}{5})-\frac{3}{5}log_2(\frac{3}{5}))+\frac{5}{15}(-\frac{4}{5}log_2(\frac{4}{5})-\frac{1}{5}log_2(\frac{1}{5}))]\\\\<br>&amp; =0.086<br>\end{split}\end{equation}在这里，$D1$、$D2$、$D3$表示数据集中$A1$取值为青年、中年、老年的样本子集，类似地：\begin{equation}\begin{split} g(D,A2)&amp;=H(D)-H(D|A2)\\\\<br>&amp; =H(D)-[\frac{5}{15}H(D_1)+\frac{10}{15}H(D_2)]\\\\<br>&amp;=0.974-[\frac{5}{15}×0 +\frac{10}{15}(-\frac{4}{10}log_2(\frac{4}{10})-\frac{6}{10}log_2(\frac{6}{10}))]\\\\<br>&amp; =0.327<br>\end{split}\end{equation}\begin{equation}\begin{split} g(D,A3)&amp;=H(D)-H(D|A3)\\\\<br>&amp; =H(D)-[\frac{6}{15}H(D_1)+\frac{9}{15}H(D_2)]\\\\<br>&amp;=0.974-[\frac{6}{15}×0 +\frac{9}{15}(-\frac{3}{9}log_2(\frac{3}{9})-\frac{6}{9}log_2(\frac{6}{9}))]\\\\<br>&amp; =0.423<br>\end{split}\end{equation}\begin{equation}\begin{split} g(D,A3)&amp;=H(D)-H(D|A4)\\\\<br>&amp; =H(D)-[\frac{5}{15}H(D_1)+\frac{6}{15}H(D_2)+\frac{4}{15}H(D_3)]\\\\<br>&amp;=0.974-[\frac{5}{15}×(-\frac{1}{5}log_2\frac{1}{5}-\frac{4}{5}log_2(\frac{4}{5}))\\\<br>&amp;\quad+\frac{6}{15}×(-\frac{2}{6}log_2\frac{2}{6}-\frac{4}{6}log_2(\frac{4}{6}))+\frac{4}{15}×0]\\\\<br>&amp; =0.366<br>\end{split}\end{equation}</li>
+<li>根节点特征选取<br>&ensp;&ensp;&ensp;&ensp;由于特征$A3$的信息增益最大，则选取特征$A3$作为根节点的特征，将数据集分为两类，$D1$($A3$取“是”)和$D2$($A3$取“否”)，由于$D1$只有同一类的样本点，是个确定性的数据集，熵为0，所以称为一个叶节点，节点的类标记为“是”。</li>
+<li>各个节点特征的选取<br>&ensp;&ensp;&ensp;&ensp;对于数据子集$D2$需要从特征$A1$、$A2$和$A4$中选择新的特征，计算各个特征的信息增益:<script type="math/tex; mode=display">g(D2,A1)=H(D2)-h(D2|A1)=0.918-0.667=0.251</script><script type="math/tex; mode=display">g(D2,A2)=H(D2)-h(D2|A2)=0.918</script><script type="math/tex; mode=display">g(D2,A4)=H(D2)-h(D2|A4)=0.474</script>&ensp;&ensp;&ensp;&ensp;选择信息增益最大的特征$A2$是否有工作来作为节点的特征。由于$A2$有两个可能取值，从这个节点引出两个子节点：一个对应”是”的有工作的节点，包含3个样本，属于同一类，类标记为“是”，另一个是对应”否”的没有工作的节点，一共6个样本，他们也属于同一类，类标记为“否”。<br>生成的决策树如下：<br><img src="/img/DT.png" alt=""><h3 id="C4-5"><a href="#C4-5" class="headerlink" title="$C4.5$"></a>$C4.5$</h3>&ensp;&ensp;&ensp;&ensp;计算过程如同$ID3$，只不过是在选择特征的标准是信息增益比。在信息增益的基础之上，除以训练集关于该特征的值的熵。<h3 id="CART"><a href="#CART" class="headerlink" title="$CART$"></a>$CART$</h3>&ensp;&ensp;&ensp;&ensp;计算过程如同$ID3$,只不过是在选择特征的标准是Gini指数。</li>
+<li>求特征的Gini指数<br>(1)求特征$A1$的$Gini$指数<script type="math/tex; mode=display">Gini(D,A1=“青年”)=\frac{5}{15}(2×\frac{2}{5}(1-\frac{2}{5}))+\frac{10}{15}(2×\frac{7}{10}(1-\frac{7}{10}))=0.44</script><script type="math/tex; mode=display">Gini(D,A1=“中年”)=0.48</script><script type="math/tex; mode=display">Gini(D,A1=“老年”)=0.44</script>&ensp;&ensp;&ensp;&ensp;由于$Gini(D,A1=“青年”)$和$Gini(D,A1=“老年”)$相等，且最小，所以$Gini(D,A1=“青年”)$和$Gini(D,A1=“老年”)$均可以作为特征$A1$的最优切分点。<br>(2)求特征$A2$和$A3$的$Gini$指数<script type="math/tex; mode=display">Gini(D,A2)=\frac{5}{15}(2×\frac{5}{5}(1-\frac{5}{5}))+\frac{10}{15}(2×\frac{4}{10}(1-\frac{4}{10}))=0.32</script><script type="math/tex; mode=display">Gini(D,A3)=\frac{9}{15}(2×\frac{3}{9}(1-\frac{3}{9}))+\frac{6}{15}(2×\frac{6}{6}(1-\frac{6}{6}))=0.267</script>&ensp;&ensp;&ensp;&ensp;由于$A2$和$A3$只有一个切分点，所以它们是最优切分点。<br>(2)求特征$A4$的$Gini$指数<script type="math/tex; mode=display">Gini(D,A4=“非常好”)=0.36</script><script type="math/tex; mode=display">Gini(D,A4=“好”)=0.47</script><script type="math/tex; mode=display">Gini(D,A4=“一般”)=0.32</script>&ensp;&ensp;&ensp;&ensp;由于$Gini(D,A4=“一般”)$最小，所以由于$Gini(D,A4=“一般”)$是最优切分点。</li>
+<li>Gini系数比较<br>&ensp;&ensp;&ensp;&ensp;在$A1$、$A2$、$A3$和$A4$几个特征中，$Gini(D,A3)$最小，所以选择特征$A3$作为最优特征,$A3=”是”$为最优切分点，于是根节点生成两个子节点，一个是叶节点。对另一个节点继续使用以上方法在其余几个特征中选择$Gini$指数最小的特征作为最优切分点，依次类推。与$ID3$生成的数完全一致。<h2 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h2>&ensp;&ensp;&ensp;&ensp;由于在学习生成决策树的时候过多地考虑如何提高对训练数据的正确分类，生成的决策树有可能存在过拟合的情况，为了防止过拟合现象，主要有两种思路，一是预剪枝：在学习的时候对树的深度、子集的样本数量等进行限定，二是对已经生成的树进行自下而上的剪枝，通过剪枝，使得树变得简单，从而使其具有更好的泛化能力。<br>主要介绍第二种方法：<br>&ensp;&ensp;&ensp;&ensp;决策树的剪枝往往通过极小化决策树整体的损失函数来实现。假设树的叶节点个数为$|T|$,$t$是树的叶节点，叶节点有$N_t$个样本，其中$k$类的样本有$N_{tk}$个，$H_t(T)$为叶节点$t$上的经验熵，$\alpha\ge0$为参数，则决策树的损失函数可以表示为:<script type="math/tex; mode=display">L(T)=\sum_{t=1}^{|T|}N_tH_t(T)+\alpha|T|，H_t(T)=-\sum_k\frac{N_{tk}}{N_t}log\frac{N_{tk}}{N_t}</script><h2 id="针对连续数据的处理"><a href="#针对连续数据的处理" class="headerlink" title="针对连续数据的处理"></a>针对连续数据的处理</h2>&ensp;&ensp;&ensp;&ensp;先占坑，后期补全。<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p>李航，统计学习方法，清华大学出版社,2012</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+	
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Michelle Yang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://michelleyang2017.github.io/2018/05/13/机器学习之决策树/" title="机器学习之决策树">https://michelleyang2017.github.io/2018/05/13/机器学习之决策树/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    
+
+
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/pay/wechatpay.png" alt="Michelle Yang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/pay/alipay.jpg" alt="Michelle Yang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/决策树/" rel="tag"><i class="fa fa-tag"></i> 决策树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/10/机器学习之logistic回归/" rel="next" title="机器学习之logistic回归">
+                <i class="fa fa-chevron-left"></i> 机器学习之logistic回归
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/16/机器学习之随机森林/" rel="prev" title="机器学习之随机森林">
+                机器学习之随机森林 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/image.jpg"
+                alt="Michelle Yang" />
+            
+              <p class="site-author-name" itemprop="name">Michelle Yang</p>
+              <p class="site-description motion-element" itemprop="description">向内认知，向外行走。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MichelleYang2017" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MichelleYang2017@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/MichelleYang018" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熵"><span class="nav-number">1.1.</span> <span class="nav-text">熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件熵"><span class="nav-number">1.2.</span> <span class="nav-text">条件熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益"><span class="nav-number">1.3.</span> <span class="nav-text">信息增益</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益比"><span class="nav-number">1.4.</span> <span class="nav-text">信息增益比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gini-指数"><span class="nav-number">1.5.</span> <span class="nav-text">$Gini$指数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gini-理解"><span class="nav-number">1.5.1.</span> <span class="nav-text">$Gini$理解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择"><span class="nav-number">2.</span> <span class="nav-text">特征选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树的生成"><span class="nav-number">3.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">3.1.</span> <span class="nav-text">$ID3$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">3.2.</span> <span class="nav-text">$C4.5$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART"><span class="nav-number">3.3.</span> <span class="nav-text">$CART$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">4.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对连续数据的处理"><span class="nav-number">5.</span> <span class="nav-text">针对连续数据的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michelle Yang</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<span>　<i class="fa fa-bomb"></i></span>
+<span id="showDays"></span>
+
+
+-->
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2018,04,18,16,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://michelle18.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://michelleyang2017.github.io/2018/05/13/机器学习之决策树/';
+          this.page.identifier = '2018/05/13/机器学习之决策树/';
+          this.page.title = '机器学习之决策树';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://michelle18.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
