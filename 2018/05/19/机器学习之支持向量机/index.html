@@ -125,7 +125,7 @@
 <meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://michelleyang2017.github.io/img/geometric_margin.png">
-<meta property="og:updated_time" content="2018-05-31T01:31:47.199Z">
+<meta property="og:updated_time" content="2018-05-31T11:14:03.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之支持向量机">
 <meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。">
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,503
+                  1,975
                 </span>
               
 
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -435,38 +435,53 @@
         <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;支持向量机(Support vector machines，SVM)是一种二分类模型，其基本模型是定义在特征空间上的间隔最大的线性分类器。学习策略是间隔最大化，最终转化为一个凸二次规划问题求解。<br><a id="more"></a><br>&ensp;&ensp;&ensp;&ensp;支持向量机学习方法包含构建由简至繁模型：线性可分支持向量机、线性支持向量机以及非线性支持向量机。</font></p>
 <h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;线性可分支持向量机(linear support vector machine in linearly separable case)主要用于给定的训练数据是线性可分的，通过硬间隔最大化，来学习一个线性分类器实现数据的分类。</p>
 <h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>&ensp;&ensp;&ensp;&ensp;给定线性可分的训练数据集，我们学习的目标是在特征空间中找到一个分离超平面，能将数据分到不同的平面中。通过间隔最大化或等价地求解相应的凸二次规划问题学习到的超平面为</p>
-<script type="math/tex; mode=display">w·x+b=0</script><p>该超平面是由平面的法向量$w$和截距$b$决定的。该平面相对应的决策函数$f(x)=sign(w·x+b)$称为线性可分支持向量机。<br>根据题设，针对二分类问题:$y(x)=w·x+b$<br>有：</p>
+<script type="math/tex; mode=display">\omega·x+b=0</script><p>该超平面是由平面的法向量$\omega$和截距$b$决定的。该平面相对应的决策函数$f(x)=sign(\omega·x+b)$称为线性可分支持向量机。<br>根据题设，针对二分类问题:$y(x)=\omega·x+b$<br>有：</p>
 <script type="math/tex; mode=display">
         \begin{cases}
          y(x_i) \ge 0===y_i=+1 \\
         y(x_i) \le 0===y_i=-1
         \end{cases}</script><p>即，$y_i·y(x_i)\ge 0$</p>
-<h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><p><strong>函数间隔</strong><br>&ensp;&ensp;&ensp;&ensp;一个点距离超平面的远近可以表示分类预测的确信程度，函数间隔用$y(w·x+b)$量化。<br><strong>几何间隔</strong><br>&ensp;&ensp;&ensp;&ensp;函数间隔除以$||w||$,具体来推导一下，设几何间隔为图中的$\gamma$：<br><img src="/img/geometric_margin.png" alt=""></p>
-<script type="math/tex; mode=display">x=x_0+\gamma\frac{w}{||w||}</script><p>两边同时乘以$w^T$得：<br>\begin{equation}\begin{split}w^Tx&amp;=w^Tx_0+\gamma\frac{w^Tw}{||w||}\\\\<br>&amp;=-b+\gamma ||w||\\\\<br>\end{split}\end{equation}可以得到几何间隔：</p>
-<script type="math/tex; mode=display">\gamma=\frac{w^Tx+b}{||w||}=\frac{f(x)}{||w||}</script><p>为了得到$\gamma$的绝对值，乘以对应类别，可得：</p>
-<script type="math/tex; mode=display">\gamma=\frac{w^Tx+b}{||w||}=\frac{yf(x)}{||w||}</script><p><strong> 支持向量 </strong><br>&ensp;&ensp;&ensp;&ensp;在线性可分的情况下，训练数据集中的样本点与分离超平面距离最近的样本点的实例称之为支持向量。支持向量使得下面的公式成立：</p>
-<script type="math/tex; mode=display">y_i(wx_i+b)-1=0</script><h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>支持向量机学习的基本思想就是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。</strong>对于线性可分的数据集，线性可分分离的超平面有无穷个，但是几何间隔最大的最大的分离超平面是唯一的。几何间隔最大的超平面可以对最难分的点，也就是距离超平面最近的点分割的很开，即有足够的确信度将它们分开。因此，我们建立目标函数为：</p>
-<script type="math/tex; mode=display">arg\max\{\min(\frac{y_i(w^Tx_i+b)}{||w||}\}</script><p>在这里我们可以通过等比例缩放，使得$\min(y_i(w^Tx_i+b))$为1，则目标函数可以转化为：</p>
-<script type="math/tex; mode=display">arg\max\frac1{||w||},s.t.y_i(w^Tx_i+b) \ge 1,i=1,2,…,n</script><p>该目标函数等价于</p>
-<script type="math/tex; mode=display">\min\frac12||w||^2,s.t.y_i(w^Tx_i+b) \ge 1,i=1,2,…,n</script><p>带有约束问题的极值问题，我们一般通过拉格朗日乘子法来求：</p>
-<script type="math/tex; mode=display">L(w,b,\alpha)=\frac12||w||^2-\sum_{i=1}^n\alpha_i(y_i(w^Tx+b)-1)\tag{1}</script><p>原问题是极小极大问题:</p>
-<script type="math/tex; mode=display">\min\limits_{w,b} \max_{\alpha}L(w,b,\alpha)</script><p>应用拉格朗日的对偶性，将原始问题变化成其对偶问题，变成极大极小问题。</p>
-<script type="math/tex; mode=display">\max\limits_{\alpha}\min_{w,b} L(w,b,\alpha)</script><p>求解对偶问题，需要先求$L(w,b,\alpha)$对$w$、$b$的极小，再求对$\alpha$的极大。<br>(1)$\min\limits_{w,b}L(w,b,\alpha)$<br>对$w$、$b$求偏导，令其等于0.</p>
-<script type="math/tex; mode=display">\frac{\partial L}{\partial w}=w-\sum_{i=1}^N\alpha_i^Ny_ix_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_i^Ny_i=0</script><p>解得：</p>
-<script type="math/tex; mode=display">w=\sum_{i=1}^N\alpha_iy_ix_i\tag{2}</script><script type="math/tex; mode=display">\sum_{i=1}^N\alpha_iy_i=0\tag{3}</script><p>将(2)带入拉格朗日函数(1)，结合公式(3)，(1)可以表示为：<br>\begin{equation}\begin{split}L(w,b,\alpha)&amp;=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^N\alpha_iy_i((\sum_{j=1}^N\alpha_jx_jx_j)x_i+b)+\sum_{i=1}^N\alpha_i\\\\<br>&amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i<br>\end{split}\end{equation}即：</p>
-<script type="math/tex; mode=display">\min\limits_{w,b}L(w,b,\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i</script><p>(2)求$\min\limits_{w,b}L(w,b,\alpha)$对$\alpha$的极大：</p>
-<script type="math/tex; mode=display">\max\limits_{\alpha}\sum_{i=1}^n\alpha_i-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0,\alpha_i \ge 0,i=1,2,…,n</script><p>整理目标函数，添加符号，得目标函数</p>
-<script type="math/tex; mode=display">\min\limits_{\alpha}\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^n\alpha_i</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0,\alpha_i \ge 0,i=1,2,…,n</script><p>同样，采用根据拉格朗日乘子法，可以求解出最优解$\alpha^*$</p>
+<h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><p><strong>函数间隔</strong><br>&ensp;&ensp;&ensp;&ensp;一个点距离超平面的远近可以表示分类预测的确信程度，函数间隔用$y(\omega·x+b)$量化。<br><strong>几何间隔</strong><br>&ensp;&ensp;&ensp;&ensp;函数间隔除以$||\omega||$,具体来推导一下，设几何间隔为图中的$\gamma$：<br><img src="/img/geometric_margin.png" alt=""></p>
+<script type="math/tex; mode=display">x=x_0+\gamma\frac{\omega}{||\omega||}</script><p>两边同时乘以$\omega^T$得：<br>\begin{equation}\begin{split}\omega^Tx&amp;=\omega^Tx_0+\gamma\frac{\omega^T\omega}{||\omega||}\\\\<br>&amp;=-b+\gamma ||\omega||\\\\<br>\end{split}\end{equation}可以得到几何间隔：</p>
+<script type="math/tex; mode=display">\gamma=\frac{\omega^Tx+b}{||\omega||}=\frac{f(x)}{||\omega||}</script><p>为了得到$\gamma$的绝对值，乘以对应类别，可得：</p>
+<script type="math/tex; mode=display">\gamma=\frac{\omega^Tx+b}{||\omega||}=\frac{yf(x)}{||\omega||}</script><p><strong> 支持向量 </strong><br>&ensp;&ensp;&ensp;&ensp;在线性可分的情况下，训练数据集中的样本点与分离超平面距离最近的样本点的实例称之为支持向量。支持向量使得下面的公式成立：</p>
+<script type="math/tex; mode=display">y_i(\omega x_i+b)-1=0</script><h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>支持向量机学习的基本思想就是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。</strong>对于线性可分的数据集，线性可分分离的超平面有无穷个，但是几何间隔最大的最大的分离超平面是唯一的。几何间隔最大的超平面可以对最难分的点，也就是距离超平面最近的点分割的很开，即有足够的确信度将它们分开。因此，我们建立目标函数为：</p>
+<script type="math/tex; mode=display">arg\max\{\min(\frac{y_i(\omega^Tx_i+b)}{||\omega||}\}</script><p>在这里我们可以通过等比例缩放，使得$\min(y_i(\omega^Tx_i+b))$为1，则目标函数可以转化为：</p>
+<script type="math/tex; mode=display">arg\max\frac1{||\omega||},s.t.y_i(\omega^Tx_i+b) \ge 1,i=1,2,…,n</script><p>该目标函数等价于</p>
+<script type="math/tex; mode=display">\min\frac12||\omega||^2,s.t.y_i(\omega^Tx_i+b) \ge 1,i=1,2,…,n</script><p>带有约束问题的极值问题，我们一般通过拉格朗日乘子法来求：</p>
+<script type="math/tex; mode=display">L(\omega,b,\alpha)=\frac12||\omega||^2-\sum_{i=1}^n\alpha_i(y_i(\omega^Tx+b)-1)\tag{1}</script><p>原问题是极小极大问题:</p>
+<script type="math/tex; mode=display">\min\limits_{\omega,b} \max_{\alpha}L(\omega,b,\alpha)</script><p>应用拉格朗日的对偶性，将原始问题变化成其对偶问题，变成极大极小问题。</p>
+<script type="math/tex; mode=display">\max\limits_{\alpha}\min_{\omega,b} L(\omega,b,\alpha)</script><p>求解对偶问题，需要先求$L(\omega,b,\alpha)$对$\omega$、$b$的极小，再求对$\alpha$的极大。<br>(1)$\min\limits_{\omega,b}L(\omega,b,\alpha)$<br>对$\omega$、$b$求偏导，令其等于0.</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial \omega}=\omega-\sum_{i=1}^N\alpha_i^Ny_ix_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_i^Ny_i=0</script><p>解得：</p>
+<script type="math/tex; mode=display">\omega=\sum_{i=1}^N\alpha_iy_ix_i\tag{2}</script><script type="math/tex; mode=display">\sum_{i=1}^N\alpha_iy_i=0\tag{3}</script><p>将(2)带入拉格朗日函数(1)，结合公式(3)，(1)可以表示为：<br>\begin{equation}\begin{split}L(\omega,b,\alpha)&amp;=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^N\alpha_iy_i((\sum_{j=1}^N\alpha_jx_jx_j)x_i+b)+\sum_{i=1}^N\alpha_i\\\\<br>&amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i<br>\end{split}\end{equation}即：</p>
+<script type="math/tex; mode=display">\min\limits_{\omega,b}L(\omega,b,\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i</script><p>(2)求$\min\limits_{\omega,b}L(\omega,b,\alpha)$对$\alpha$的极大：</p>
+<script type="math/tex; mode=display">\max\limits_{\alpha}\sum_{i=1}^n\alpha_i-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0,\alpha_i \ge 0,i=1,2,…,n</script><p>整理目标函数，添加负号，得对偶优化问题</p>
+<script type="math/tex; mode=display">\min\limits_{\alpha}\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^n\alpha_i</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0,\alpha_i \ge 0,i=1,2,…,n</script><p>根据$SMO$算法可以求得对偶问题中的$\alpha$。</p>
 <h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;线性支持向量机(linear support vector machine)主要用于给定的训练数据是线性不可分的，通过软间隔最大化，来学习一个线性分类器实现数据的分类。</p>
 <h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p>&ensp;&ensp;&ensp;&ensp;对于线性不可分的数据，如果是因为数据有噪音而使得数据是非线性结构，使用上述算法是不行的，现象不可分意味着某些样本点不能满足函数间隔大于等于1的约束条件。正是由于噪声的存在，使得超平面有点偏斜，为了解决这个问题，允许数据点在一定程度上偏离超平面，我们引入了松弛因子$\xi_i \ge 0$,使得函数间隔加上松弛变量大于等于1，这样约束条件变成：</p>
-<script type="math/tex; mode=display">y_i(wx_i+b) \ge 1-\xi_i</script><p>同时，我们还需要在原来的目标函数后面加上一项，使得这些$\xi_i$的综合也要最小:</p>
-<script type="math/tex; mode=display">\min \frac12||w||^2+C\sum_{i=1}^n\xi_i</script><p>$C&gt;0$成为惩罚参数，是超参数，人为设定，最小化目标函数包含两层含义：使得$\frac12||w||^2$尽量小即间隔尽量大，同时使错误分类的点的个数要尽可能的少。</p>
+<script type="math/tex; mode=display">y_i(\omega x_i+b) \ge 1-\xi_i</script><p>同时，我们还需要在原来的目标函数后面加上一项，使得这些$\xi_i$的综合也要最小:</p>
+<script type="math/tex; mode=display">\min \frac12||\omega||^2+C\sum_{i=1}^n\xi_i</script><p>$C&gt;0$成为惩罚参数，是超参数，人为设定，最小化目标函数包含两层含义：使得$\frac12||\omega||^2$尽量小即间隔尽量大，同时使错误分类的点的个数要尽可能的少。</p>
 <h3 id="目标函数-1"><a href="#目标函数-1" class="headerlink" title="目标函数"></a>目标函数</h3><p>&ensp;&ensp;&ensp;&ensp;线性不可分的线性支持向量机的学习问题又变成了一个凸二次优化的问题：</p>
-<script type="math/tex; mode=display">\min\limits_{w,b,\xi}\frac12||w||^2+C\sum_{i=1}^N \xi_i</script><script type="math/tex; mode=display">s.t. y_i(wx_i+b)\ge1-\xi_i,i=1,2,…,N;\xi_i \ge 0,i=1,2,…,N</script><p>同样地，采用拉格朗日乘子法来求极值问题，原始问题的拉格朗日函数是：</p>
-<script type="math/tex; mode=display">L(w,b,\xi,\alpha,\mu)=\frac12||w||^2+C\sum_{i=1}^N\xi_i-\sum_{i=1}^n\alpha_i(y_i(w^Tx+b)-1+\xi_i)-\sum_{i=1}^N\mu_i\xi_i\tag{4}</script><p>(1)$\min\limits_{w,b}L(w,b,\alpha)$<br>对$w$、$b$、$\xi$求偏导，令其等于0.</p>
-<script type="math/tex; mode=display">\frac{\partial L}{\partial w}=w-\sum_{i=1}^N\alpha_i^Ny_ix_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_i^Ny_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial \xi}=C-\alpha_i-\mu_i=0</script><p>解得：</p>
-<script type="math/tex; mode=display">w=\sum_{i=1}^N\alpha_iy_ix_i\tag{5}</script><script type="math/tex; mode=display">\sum_{i=1}^N\alpha_iy_i=0\tag{6}</script><script type="math/tex; mode=display">C=\alpha_i+\mu_i\tag{7}</script><p>将(5)(6)(7)带入拉格朗日函数(4)，(4)可以表示为：<br>\begin{equation}\begin{split}L(w,b,\xi,\alpha,\mu)&amp;=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^N\alpha_iy_i((\sum_{j=1}^N\alpha_jx_jx_j)x_i+b)+\sum_{i=1}^N\alpha_i\\\\<br>&amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i<br>\end{split}\end{equation}即：</p>
-<script type="math/tex; mode=display">\min\limits_{w,b}L(w,b,\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i</script><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;非线性支持向量机(linear support vector machine)主要用于给定的训练数据是非线性的，通过核函数将原始数据映射到更高维的空间，来学习一个分类器实现数据的分类。</p>
+<script type="math/tex; mode=display">\min\limits_{\omega,b,\xi}\frac12||\omega||^2+C\sum_{i=1}^N \xi_i</script><script type="math/tex; mode=display">s.t. y_i(\omega x_i+b)\ge1-\xi_i,i=1,2,…,N;\xi_i \ge 0,i=1,2,…,N</script><p>同样地，采用拉格朗日乘子法来求极值问题，原始问题的拉格朗日函数是：</p>
+<script type="math/tex; mode=display">L(\omega,b,\xi,\alpha,\mu)=\frac12||\omega||^2+C\sum_{i=1}^N\xi_i-\sum_{i=1}^n\alpha_i(y_i(\omega^Tx+b)-1+\xi_i)-\sum_{i=1}^N\mu_i\xi_i\tag{4}</script><p>(1)$\min\limits_{\omega,b}L(\omega,b,\alpha)$<br>对$\omega$、$b$、$\xi$求偏导，令其等于0.</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial \omega}=\omega-\sum_{i=1}^N\alpha_i^Ny_ix_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_i^Ny_i=0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial \xi}=C-\alpha_i-\mu_i=0</script><p>解得：</p>
+<script type="math/tex; mode=display">\omega=\sum_{i=1}^N\alpha_iy_ix_i\tag{5}</script><script type="math/tex; mode=display">\sum_{i=1}^N\alpha_iy_i=0\tag{6}</script><script type="math/tex; mode=display">C=\alpha_i+\mu_i\tag{7}</script><p>将(5)(6)(7)带入拉格朗日函数(4)，(4)可以表示为：<br>\begin{equation}\begin{split}L(\omega,b,\xi,\alpha,\mu)&amp;=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j-\sum_{i=1}^N\alpha_iy_i((\sum_{j=1}^N\alpha_jx_jx_j)x_i+b)+\sum_{i=1}^N\alpha_i\\\\<br>&amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i<br>\end{split}\end{equation}即：</p>
+<script type="math/tex; mode=display">\min\limits_{\omega,b,\xi}L(\omega,b,\xi,\alpha,\mu)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j+\sum_{i=1}^N\alpha_i</script><p>(2)求$\min\limits_{\omega,b,\xi}L(\omega,b,\xi,\alpha,\mu)$对$\alpha$的极大，得到对偶问题：</p>
+<script type="math/tex; mode=display">\max\limits_{\alpha}\sum_{i=1}^n\alpha_i-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jx_ix_j</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0;C-\alpha_i-\mu_i=0</script><script type="math/tex; mode=display">\alpha_i \ge 0,i=1,2,…,n;\mu_i \ge 0,i=1,2,…,n\tag{8}</script><p>公式(8)等价于$0\le \alpha_i\le C$<br>可以将该问题求极大问题转化为求极小，于是得到对偶问题。根据$SMO$算法可以求得对偶问题中的$\alpha$。</p>
+<h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><p>&ensp;&ensp;&ensp;&ensp;非线性支持向量机(linear support vector machine)主要用于给定的训练数据是非线性的，通过核函数将原始数据映射到更高维的空间，来解决在原始空间中线性不可分的问题。</p>
+<h3 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="算法描述"></a>算法描述</h3><p>&ensp;&ensp;&ensp;&ensp;给定线性不可分的训练数据集，我们首先在低维空间中计算，然后通过核函数将输入数据映射到高纬特征空间，最终在高纬特征空间中构造出最优分离超平面，从而把平面不好分的非线性数据分开。因此该问题可以分解为两步，第一步是首先通过非线性映射将数据变换到一个特征空间，第二步是在特征空间中找到一个分离超平面，学习到的超平面可以表示为</p>
+<script type="math/tex; mode=display">\omega·\Phi(x)+b=0</script><p>再结合公式(2)，决策函数可以表示为：</p>
+<script type="math/tex; mode=display">f(x)=sign(\sum_{i=1}^N \alpha_iy_i(\Phi(x_i)\Phi(x))+b)\tag{9}</script><p>其中$\Phi$是映射函数，根据公式(9)如果可以直接计算内积$\Phi(x_i)\Phi(x)$，就可以将两个步骤融合到一起建立一个非线性的学习期，这样直接计算的方法称之为核函数方法。<br>具体算法流程：</p>
+<ol>
+<li>目标函数<br>&ensp;&ensp;&ensp;&ensp;选取适当的核函数$k(x,z)$和适当的参数$C$,构造并求解最优化问题<script type="math/tex; mode=display">\max\limits_{\alpha}\sum_{i=1}^n\alpha_i-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jk(x_i,x_j)</script><script type="math/tex; mode=display">s.t.\sum_{i=1}^n\alpha_iy_i=0;C-\alpha_i-\mu_i=0</script><script type="math/tex; mode=display">0\le \alpha_i\le C,i=1,2,…,N</script>根据$SMO$算法求得最优解$\alpha^{*}=(\alpha_1^{*},\alpha_2^{*},…,\alpha_N^{*})^T$</li>
+<li>计算$b^{*}$<br>选取$\alpha^{*}$的正分量$0\le \alpha_i\le C$,计算$b^{*}$<script type="math/tex; mode=display">b^{*}=y_j-\sum_{i=1}^N\alpha_i^{*}y_ik(x_ix_j)</script></li>
+<li>构造决策函数<script type="math/tex; mode=display">f(x)=sign(\sum_{i=1}^N \alpha_i^{*}y_ik(x,x_i)+b^{*}</script><h3 id="常见的核函数"><a href="#常见的核函数" class="headerlink" title="常见的核函数"></a>常见的核函数</h3></li>
+<li>多项式核<br>&ensp;&ensp;&ensp;&ensp;用数学公式可以表示为：<script type="math/tex; mode=display">k(\vec x,\vec y)=(\vec x \vec y+c)^2</script></li>
+<li>高斯核<br>&ensp;&ensp;&ensp;&ensp;用数学公式可以表示为：<script type="math/tex; mode=display">k(\vec x,\vec y)=e^{-\frac{||\vec x-\vec y||^2}{2\delta^2}}</script><h2 id="SMO"><a href="#SMO" class="headerlink" title="SMO"></a>SMO</h2>&ensp;&ensp;&ensp;&ensp;先占坑，后期补上。<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p>李航,统计学习方法，清华大学出版社，2012<br><a href="https://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="noopener">支持向量机通俗导论（理解SVM的三层境界）</a></p>
+</blockquote>
+</li>
+</ol>
 
       
     </div>
@@ -559,8 +574,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/27/机器学习之聚类算法/" rel="prev" title="机器学习之聚类算法">
-                机器学习之聚类算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/27/机器学习之聚类算法(K-means)/" rel="prev" title="机器学习之聚类算法(K-means)">
+                机器学习之聚类算法(K-means) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +667,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -674,7 +689,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -729,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.</span> <span class="nav-text">线性可分支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">1.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念"><span class="nav-number">1.2.</span> <span class="nav-text">几个概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">1.3.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-number">2.</span> <span class="nav-text">线性支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数-1"><span class="nav-number">2.2.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-number">3.</span> <span class="nav-text">非线性支持向量机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.</span> <span class="nav-text">线性可分支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">1.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念"><span class="nav-number">1.2.</span> <span class="nav-text">几个概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">1.3.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-number">2.</span> <span class="nav-text">线性支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数-1"><span class="nav-number">2.2.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-number">3.</span> <span class="nav-text">非线性支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的核函数"><span class="nav-number">3.2.</span> <span class="nav-text">常见的核函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMO"><span class="nav-number">4.</span> <span class="nav-text">SMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -811,7 +826,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共19.3k字</span>
+  <span class="post-count">博客全站共23.3k字</span>
 </div>
 
         

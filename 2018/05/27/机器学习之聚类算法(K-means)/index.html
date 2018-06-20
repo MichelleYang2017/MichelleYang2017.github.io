@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="博客搭建,Github,Hexo," />
+  <meta name="keywords" content="机器学习,聚类," />
 
 
 
@@ -116,18 +116,21 @@
 
 
 
-<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;用一天的时间跟随网上教程，完成了Github+Hexo博客的初步搭建，因此在这里记录一下自己博客的搭建历程。Hexo是一个基于Node.js的静态博客引擎，Hexo好处就是将写好的md格式的文本转换成静态的html文件，并可以将自己的静态博客托管到Github上。">
-<meta name="keywords" content="博客搭建,Github,Hexo">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;聚类(Clustering)是一种无监督的学习方法。主要是对大量未标注的数据集，按照内在相似性将数据集划分为多个类别，使得类别内的数据相似度较大而类别间的数据的相似度较小。">
+<meta name="keywords" content="机器学习,聚类">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github+Hexo个人博客搭建">
-<meta property="og:url" content="https://michelleyang2017.github.io/2018/04/19/Github-Hexo个人博客搭建/index.html">
+<meta property="og:title" content="机器学习之聚类算法(K-means)">
+<meta property="og:url" content="https://michelleyang2017.github.io/2018/05/27/机器学习之聚类算法(K-means)/index.html">
 <meta property="og:site_name" content="Michelle">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;用一天的时间跟随网上教程，完成了Github+Hexo博客的初步搭建，因此在这里记录一下自己博客的搭建历程。Hexo是一个基于Node.js的静态博客引擎，Hexo好处就是将写好的md格式的文本转换成静态的html文件，并可以将自己的静态博客托管到Github上。">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;聚类(Clustering)是一种无监督的学习方法。主要是对大量未标注的数据集，按照内在相似性将数据集划分为多个类别，使得类别内的数据相似度较大而类别间的数据的相似度较小。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T09:16:12.243Z">
+<meta property="og:image" content="https://michelleyang2017.github.io/img/KNN.jpg">
+<meta property="og:image" content="https://michelleyang2017.github.io/img/异同图.png">
+<meta property="og:updated_time" content="2018-06-01T13:46:46.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github+Hexo个人博客搭建">
-<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;用一天的时间跟随网上教程，完成了Github+Hexo博客的初步搭建，因此在这里记录一下自己博客的搭建历程。Hexo是一个基于Node.js的静态博客引擎，Hexo好处就是将写好的md格式的文本转换成静态的html文件，并可以将自己的静态博客托管到Github上。">
+<meta name="twitter:title" content="机器学习之聚类算法(K-means)">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;聚类(Clustering)是一种无监督的学习方法。主要是对大量未标注的数据集，按照内在相似性将数据集划分为多个类别，使得类别内的数据相似度较大而类别间的数据的相似度较小。">
+<meta name="twitter:image" content="https://michelleyang2017.github.io/img/KNN.jpg">
 
 
 
@@ -157,13 +160,13 @@
 
 
 
-  <link rel="canonical" href="https://michelleyang2017.github.io/2018/04/19/Github-Hexo个人博客搭建/"/>
+  <link rel="canonical" href="https://michelleyang2017.github.io/2018/05/27/机器学习之聚类算法(K-means)/"/>
 
 
 
 
 
-  <title>Github+Hexo个人博客搭建 | Michelle</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习之聚类算法(K-means) | Michelle</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -290,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://michelleyang2017.github.io/2018/04/19/Github-Hexo个人博客搭建/">
+    <link itemprop="mainEntityOfPage" href="https://michelleyang2017.github.io/2018/05/27/机器学习之聚类算法(K-means)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Michelle Yang">
@@ -307,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Github+Hexo个人博客搭建</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习之聚类算法(K-means)</h1>
         
 
         <div class="post-meta">
@@ -319,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T21:11:07+08:00">
-                2018-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T20:56:37+08:00">
+                2018-05-27
               </time>
             
 
@@ -342,8 +345,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -360,9 +363,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/19/Github-Hexo个人博客搭建/#comments" itemprop="discussionUrl">
+                <a href="/2018/05/27/机器学习之聚类算法(K-means)/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/19/Github-Hexo个人博客搭建/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/05/27/机器学习之聚类算法(K-means)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -386,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,006
+                  1,888
                 </span>
               
 
@@ -402,7 +405,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  7
                 </span>
               
             </div>
@@ -430,52 +433,22 @@
       
 
       
-        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;用一天的时间跟随网上教程，完成了Github+Hexo博客的初步搭建，因此在这里记录一下自己博客的搭建历程。Hexo是一个基于Node.js的静态博客引擎，Hexo好处就是将写好的md格式的文本转换成静态的html文件，并可以将自己的静态博客托管到Github上。<br><a id="more"></a></font></p>
-<h2 id="预备工作"><a href="#预备工作" class="headerlink" title="预备工作"></a>预备工作</h2><h3 id="软件下载并安装"><a href="#软件下载并安装" class="headerlink" title="软件下载并安装"></a>软件下载并安装</h3><ol>
-<li><p>下载并安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></p>
-</li>
-<li><p>下载并安装<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> </p>
-</li>
+        <p><font color="#2F4F4F" size="4">&ensp;&ensp;&ensp;&ensp;聚类(Clustering)是一种无监督的学习方法。主要是对大量未标注的数据集，按照内在相似性将数据集划分为多个类别，使得类别内的数据相似度较大而类别间的数据的相似度较小。<br><a id="more"></a></font></p>
+<h2 id="相似度度量"><a href="#相似度度量" class="headerlink" title="相似度度量"></a>相似度度量</h2><p>&ensp;&ensp;&ensp;&ensp;样本之间的相似性可以通过样本在特征空间中的距离来度量，两个样本在特征空间中距离越小，则越相似，相似性越高，反之，相似性越低。接下来总结几种相似度度量方式。</p>
+<h3 id="闵可夫斯基距离"><a href="#闵可夫斯基距离" class="headerlink" title="闵可夫斯基距离"></a>闵可夫斯基距离</h3><p>&ensp;&ensp;&ensp;&ensp;闵可夫斯基距离不是一种距离，而是一组距离的定义，定义如下：</p>
+<script type="math/tex; mode=display">d(x,y)=\sqrt[p]{\sum_{i=1}^n|x_i-y_i|^p}</script><p>当$p=1$时，代表的是曼哈顿距离；当$p=2$时，代表的是欧式距离，当$p \to \infty$,代表的是切比雪夫距离。</p>
+<h4 id="欧式距离"><a href="#欧式距离" class="headerlink" title="欧式距离"></a>欧式距离</h4><p>&ensp;&ensp;&ensp;&ensp;欧几里得度量（euclidean metric）（也称欧氏距离）指的是在$m$维空间中两个点之间的真实距离，定义在欧几里得空间中：</p>
+<script type="math/tex; mode=display">d(x,y)=\sqrt{\sum_{i=1}^n(x_i-y_i)^2}</script><h4 id="曼哈顿距离"><a href="#曼哈顿距离" class="headerlink" title="曼哈顿距离"></a>曼哈顿距离</h4><p>&ensp;&ensp;&ensp;&ensp;曼哈顿距离的正式意义为L1-距离，也就是在欧几里得空间的固定直角坐标系上两点所想成的线段在轴上的投影距离综合：</p>
+<script type="math/tex; mode=display">d(x,y)=\sum_{i=1}^n|x_i-y_i|</script><h3 id="杰卡德相似性度量"><a href="#杰卡德相似性度量" class="headerlink" title="杰卡德相似性度量"></a>杰卡德相似性度量</h3><ol>
+<li>杰卡德相似系数<br>&ensp;&ensp;&ensp;&ensp;杰卡德相似系数是衡量两个集合相似度的一种指标，指的是两个集合$A$和$B$交集元素的个数在$A$和$B$并集中所占的比例，表示为：<script type="math/tex; mode=display">J(A,B)=\frac{|A\cap B|}{|A\cup B|}</script></li>
+<li>杰卡德距离<br>&ensp;&ensp;&ensp;&ensp;杰卡德距离正好和杰卡德相似系数相反，用来衡量两个集合的区分度。指的是两个集合中不同元素占所有元素的比例。<script type="math/tex; mode=display">J_{\delta}(A,B)=1-J(A,B)</script><h3 id="余弦相似度"><a href="#余弦相似度" class="headerlink" title="余弦相似度"></a>余弦相似度</h3>&ensp;&ensp;&ensp;&ensp;乍一看，余弦好像和相似度并没有关系，夹角预先是衡量两个向量方向的差异，运用在机器学习中来衡量样本所在的特征空间之间的差异。<script type="math/tex; mode=display">cos(\theta)=\frac{a·b}{|a||b|}</script>$cos(\theta)$越大，说明两个向量之间的夹角越小，反之亦然。<h3 id="Pearson相关系数"><a href="#Pearson相关系数" class="headerlink" title="Pearson相关系数"></a>Pearson相关系数</h3>&ensp;&ensp;&ensp;&ensp;在数据标准化($\mu=0,\sigma=1$)之后,Pearson相关系数等价于余弦相似度、欧氏距离，它是衡量特征向量之间相似度的一种方法。是对欧式距离的改进，它提供了对于变量取值范围不同的处理步骤。它将输出范围在-1到1之间，0代表无相关性，负值代表负相关，正值代表正相关。<br>\begin{equation}\begin{split}\rho(x,y)&amp;=\frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X\sigma_Y}\\\\<br>&amp;=\frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sqrt\sum_{i=1}^n(X_i-\mu_X)^2\sqrt\sum_{i=1}^n(Y_i-\mu_Y)^2}\end{split}\end{equation}<h3 id="相对熵"><a href="#相对熵" class="headerlink" title="相对熵"></a>相对熵</h3>&ensp;&ensp;&ensp;&ensp;相对熵，又称为KL散度、信息增益。在信息论中，是衡量基于$Q$分布的编码来编码来自$P$分布的样本平均所需的额外的bit个数。在机器学习领域则是是用来衡量两个分布之间的相似程度。对于离散随机变量，其概率分布$P$和$Q$的KL散度可以定义为：<script type="math/tex; mode=display">D_{KL}(P||Q)=-\sum_iP(i)ln\frac{Q(i)}{P(i)}</script>注意：$D_{KL}(P||Q) \neq D_{KL}(Q||P)$<br>若$P$是数据的真实概率分布，$Q$式由数据计算得到的概率分布。机器学习的目的是希望$Q$尽可能地逼近$P$，从而使相对熵为0。只有二者之间略有差异，其值就会大于0。<h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2>&ensp;&ensp;&ensp;&ensp;K-means算法属于聚类算法，属于无监督学习，它主要是把$n$个样本根据样本的特征分为$k$簇，同一簇之间的样本相似性很高，而不同簇中的样本相似性很小。<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><strong> 大白话叙述如下：</strong><br>&ensp;&ensp;&ensp;&ensp;(1)为每个类确定一个初始聚类中心，作为$K$个簇的起始质心，一般这$K$个点事随机选择的。<br>&ensp;&ensp;&ensp;&ensp;(2)对于每一个样本点，将其标记为距离簇中心最近（相似度最高）的类别。<br>&ensp;&ensp;&ensp;&ensp;(3)根据聚类结果，重新计算$K$各簇各自的中心，计算方法一般是取簇中所有点各自维度的算术平均值。<br>&ensp;&ensp;&ensp;&ensp;(4)重复步骤(2)，按照步骤(3)得出的簇中心，重新聚类。<br>&ensp;&ensp;&ensp;&ensp;(5)重复步骤(4)，直到聚类结果不再发生变化，输出聚类结果。<br><strong> 公式化解释：</strong><br>&ensp;&ensp;&ensp;&ensp;K-means是基于这样一个假设建模的：每一个簇里面的数据都是服从均值不同，方差相同的混合高斯分布。<br>&ensp;&ensp;&ensp;&ensp;假设$K$个簇中心为$\mu_1,\mu_2,…,\mu_k$，每个簇的样本的数目为$N_1,N_2,…,N_k$，每个簇样本都服从方差为$\sigma$的高斯分布，则第$i$个簇的第$j$个样本的概率可以表示为：<script type="math/tex; mode=display">p_{ij}=\frac1{\sqrt{2\pi}\sigma}exp\frac{x_j^i-\mu_i}{2\sigma^2}</script>第$i$个簇的似然函数可以表示为：<script type="math/tex; mode=display">\prod_{j=1}^{j=N_j}p_{ij}=\prod_{j=1}^{j=N_j}\frac1{\sqrt{2\pi}\sigma}exp\frac{x_j^i-\mu_i}{2\sigma^2}</script>所有样本的似然函数可以表示为：<script type="math/tex; mode=display">\prod_{i=1}^K\prod_{j=1}^{j=N_j}p_{ij}=\prod_{i=1}^K\prod_{j=1}^{j=N_j}\frac1{\sqrt{2\pi}\sigma}exp\frac{x_j^i-\mu_i}{2\sigma^2}</script>对似然函数取对数可以表示为：<script type="math/tex; mode=display">\ln\prod_{i=1}^K\prod_{j=1}^{j=N_j}p_{ij}=\sum_{i=1}^K\sum_{j=1}^{j=N_j}\frac1{\sqrt{2\pi}\sigma}exp\frac{x_j^i-\mu_i}{2\sigma^2}</script>省去常数项,则得到最大似然估计的目标函数，让其目标函数取最大即可：<script type="math/tex; mode=display">J(\mu_1,\mu_2,…,\mu_k)=-\frac12\sum_{i=1}^K\sum_{j=1}^{j=N_j}(x_j^i-\mu_i)</script>即添加一个负号，我们的目标函数就变成了均方误差：<script type="math/tex; mode=display">J(\mu_1,\mu_2,…,\mu_k)=\frac12\sum_{i=1}^K\sum_{j=1}^{j=N_j}(x_j^i-\mu_i)</script>对目标函数求偏导，得：<script type="math/tex; mode=display">\frac{\partial J}{\partial \mu_i}=-\sum_{j=1}^{N_j}(x_j-\mu_i)=0</script>解出来：<script type="math/tex; mode=display">\mu_i=$frac1N\sum_{j=1}^{N_j}x_j</script><h3 id="算法评价"><a href="#算法评价" class="headerlink" title="算法评价"></a>算法评价</h3></li>
+<li>该算法是基于样本是服从高斯分布的这个假设，当簇样本近似为高斯分布时，效果较好，但对于环状分布的数据聚类效果不好</li>
+<li>K-means需要人为确定初始聚类中心，不同的初始聚类中心导致完全不同的聚类结果，还需要事先给出簇的数目，即对初始值敏感。</li>
+<li>对噪声和孤立点比较敏感</li>
+<li>容易实现，简单快速<h2 id="K-means-1"><a href="#K-means-1" class="headerlink" title="K-means++"></a>K-means++</h2>&ensp;&ensp;&ensp;&ensp; K-means++算法是K-means的高配版，它主要是为解决初始聚类中心随机选可能会出现比较近导致后期聚类效果不理想的问题。k-means++选择初始聚类中心的基本思想就是：初始的聚类中心之间的相互距离要尽可能的远。<h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3>大白话描述为：<br>&ensp;&ensp;&ensp;&ensp; (1)从给定的样本点集合中随机选择一个点作为第一个聚类中心<br>&ensp;&ensp;&ensp;&ensp;(2)计算其他样本点到最近聚类中心的距离(相似度)，在距离聚类中心比较远，相似度比较小的点，随机选择一个聚类中心，作为新的聚类中心。<br>&ensp;&ensp;&ensp;&ensp;(3)重复(2)，直到$k$个初始聚类中心被选出来，再执行标准k-means。<h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2>&ensp;&ensp;&ensp;&ensp; KNN(K Nearest Neighbor)属于lazy-leaning，是一种分类算法。在一个样本空间里，样本分成几个类型，然后给定一个待分类的数据，通过计算距离自己最近的K个样本来判断这个待分类数据属于哪个类别。<br><img src="/img/KNN.jpg" alt="">如图所示，图中有两类，一类是蓝色的正方形，另一类是红色的三角形。而那个绿色的圆形是我们待分类的数据。如果k=3，则距离测试样本最近的有两个红色三角形和1个蓝色正方形的样本，基于少数服从多数的原则，该样本属于红色三角形。若K=5，则样本属于蓝色正方形。<h2 id="KNN和K-means区别"><a href="#KNN和K-means区别" class="headerlink" title="KNN和K-means区别"></a>KNN和K-means区别</h2><img src="/img/异同图.png" alt=""></li>
 </ol>
-<h3 id="Github注册"><a href="#Github注册" class="headerlink" title="Github注册"></a>Github注册</h3><p>访问<a href="https://github.com/" target="_blank" rel="noopener">github官网</a> ,点击sign up注册一个账号，记住自己注册的用户名。</p>
-<h3 id="新建一个Github仓库"><a href="#新建一个Github仓库" class="headerlink" title="新建一个Github仓库"></a>新建一个Github仓库</h3><p>点击new Repository之后，创建的仓库名由用户名+github.io构成,举个例子,我注册的github名字是我注册的github名是MichelleYang2017,则我的Repository name应该为MichelleYang2017.github.io,其余选择默认选项，点击”create Repository”。</p>
-<h2 id="Github仓库同步到本地"><a href="#Github仓库同步到本地" class="headerlink" title="Github仓库同步到本地"></a>Github仓库同步到本地</h2><h3 id="Git的配置"><a href="#Git的配置" class="headerlink" title="Git的配置"></a>Git的配置</h3><p>双击本地的Git Bash，在命令行输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure>
-<p>输入之后如果能够进入到~/.ssh,则证明你不是第一次使用git，则跳过第SSH Key生成这一步，如果提示终端你：“NO such file or dictionary”,说明你是第一次使用git，这时候我们需要你要跳转到下一步来生成新的SSH key。</p>
-<h3 id="SSH-key生成"><a href="#SSH-key生成" class="headerlink" title="SSH key生成"></a>SSH key生成</h3><p>双击本地的Git Bash，在命令行输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"邮件地址@youremail.com"</span></span><br></pre></td></tr></table></figure>
-<p>注意：-C后面输入的是你注册github时绑定的email。</p>
-<p>测试自己有没有成功：<br>在命令行再次输入$ cd ~/.ssh，没有之前的错误提示，则证明成功。</p>
-<h3 id="添加SSH-Key-到Github"><a href="#添加SSH-Key-到Github" class="headerlink" title="添加SSH Key 到Github"></a>添加SSH Key 到Github</h3><p>在本地端的操作：<br>   我们需要复制~/.ssh目录下面的id_rsa.pub内容到github相应位置，目前只需要你复制id_rsa.pub里面的内容，如果不知道id_rsa.pub文件在哪，可以在gitbash中输入$pwd，再从计算机中找到相应的文件目录。</p>
-<p>在Github的操作：<br>    右键头像，点击setting，选择SSH and GPG Keys进行配置，将刚刚复制的内容填写到Key那一栏，最后点击”Add Key”</p>
-<p>测试：<br>    在本地端Git Bash命令终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>如果能显示出自己注册的Github用户名，则证明成功。</p>
-<p>完善个人信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"michelleyang2017"</span>//输入注册时的username</span><br><span class="line">$ git config --global user.email  <span class="string">"michelleyang2017a@gmail.com"</span>//填写注册邮箱</span><br></pre></td></tr></table></figure>
-<h2 id="搭建Hexo个人博客"><a href="#搭建Hexo个人博客" class="headerlink" title="搭建Hexo个人博客"></a>搭建Hexo个人博客</h2><h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>利用npm命令安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></p>
-<h3 id="创建关于博客的文件夹"><a href="#创建关于博客的文件夹" class="headerlink" title="创建关于博客的文件夹"></a>创建关于博客的文件夹</h3><p>在本地创建一个和仓库名同名的文件夹，然后右键Git bash here，则会打开一个新的gitbash<br>输入以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init //初始化hexo主题</span><br><span class="line">$ npm install //安装hexo所需要的一些依赖</span><br><span class="line">$ npm install hexo-deployer-git --save //解决hexo新版本的部署问题</span><br></pre></td></tr></table></figure></p>
-<h3 id="本地查看"><a href="#本地查看" class="headerlink" title="本地查看"></a>本地查看</h3><p>输入以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g //生成静态文件</span><br><span class="line">$ hexo s //开启本地服务器</span><br></pre></td></tr></table></figure></p>
-<p>打开localhost:4000查看博客建站的效果，如果一直网页一直刷新不出来，可以输入以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s -p 5000 //更换一个端口，打开localhost:5000测试博客建站效果</span><br></pre></td></tr></table></figure></p>
-<h3 id="部署到github端"><a href="#部署到github端" class="headerlink" title="部署到github端"></a>部署到github端</h3><ol>
-<li><p>复制SSH码：<br> 进入自己新建的仓库，选择Clone ordownload,此时会出现SSH码，复制此SSH码</p>
-</li>
-<li><p>在本地端编辑配置文件<br> 编辑新建的文件夹下面的_config.yml，修改文档末尾:deploy部分   </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> <span class="built_in">type</span>: git</span><br><span class="line"> repository: git@github.com:username/username.github.io.git</span><br><span class="line"> branch: master</span><br></pre></td></tr></table></figure>
-<p> 注意：在修改配置文件的时候冒号后面有一个空格，要不然会报错。</p>
-</li>
-<li><p>部署站点<br> 输入以下命令：   </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g  //生成静态文件</span><br><span class="line">$ hexo d //文件生成后立即同步到github端</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="更换Next主题"><a href="#更换Next主题" class="headerlink" title="更换Next主题"></a>更换Next主题</h2><blockquote>
-<p><a href="https://zhiho.github.io/2015/09/29/hexo-next/" target="_blank" rel="noopener">更换next主题</a><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next使用文档</a></p>
-</blockquote>
-<h2 id="美化博客网站"><a href="#美化博客网站" class="headerlink" title="美化博客网站"></a>美化博客网站</h2><blockquote>
-<p><a href="https://segmentfault.com/a/1190000009544924" target="_blank" rel="noopener">美化主题</a><br><a href="https://www.zhihu.com/question/48934747" target="_blank" rel="noopener">设置多个tag</a><br><a href="https://www.jianshu.com/p/d68de067ea74" target="_blank" rel="noopener">添加Disqus评论</a>  </p>
-</blockquote>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/32957389?utm_source=qq&amp;utm_medium=social" target="_blank" rel="noopener">Github+Hexo建博客参考1</a><br><a href="https://zhuanlan.zhihu.com/p/33565651?utm_source=qq&amp;utm_medium=social" target="_blank" rel="noopener">Github+Hexo建博客参考2</a><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next使用文档</a></p>
+<p>邹博，小象学院<br>李航，统计学习方法，清华大学出版社，2012<br><a href="https://www.zhihu.com/question/19734616" target="_blank" rel="noopener">Pearson相关系数</a><br><a href="http://www.cnblogs.com/heaad/archive/2011/03/08/1977733.html" target="_blank" rel="noopener">机器学习中的相似性度量</a><br><a href="http://www.csuldw.com/2015/06/03/2015-06-03-ml-algorithm-K-means/" target="_blank" rel="noopener">K-means聚类算法</a><br><a href="https://coolshell.cn/articles/8052.html" target="_blank" rel="noopener">KNN算法</a></p>
 </blockquote>
 
       
@@ -492,7 +465,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://michelleyang2017.github.io/2018/04/19/Github-Hexo个人博客搭建/" title="Github+Hexo个人博客搭建">https://michelleyang2017.github.io/2018/04/19/Github-Hexo个人博客搭建/</a>
+    <a href="https://michelleyang2017.github.io/2018/05/27/机器学习之聚类算法(K-means)/" title="机器学习之聚类算法(K-means)">https://michelleyang2017.github.io/2018/05/27/机器学习之聚类算法(K-means)/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -544,11 +517,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/博客搭建/" rel="tag"><i class="fa fa-tag"></i> 博客搭建</a>
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
           
-            <a href="/tags/Github/" rel="tag"><i class="fa fa-tag"></i> Github</a>
-          
-            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+            <a href="/tags/聚类/" rel="tag"><i class="fa fa-tag"></i> 聚类</a>
           
         </div>
       
@@ -561,14 +532,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/19/机器学习之支持向量机/" rel="next" title="机器学习之支持向量机">
+                <i class="fa fa-chevron-left"></i> 机器学习之支持向量机
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/20/机器学习之开发环境/" rel="prev" title="机器学习之开发环境">
-                机器学习之开发环境 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/03/机器学习之聚类-层次聚类/" rel="prev" title="机器学习之聚类(层次聚类)">
+                机器学习之聚类(层次聚类) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -737,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预备工作"><span class="nav-number">1.</span> <span class="nav-text">预备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件下载并安装"><span class="nav-number">1.1.</span> <span class="nav-text">软件下载并安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github注册"><span class="nav-number">1.2.</span> <span class="nav-text">Github注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建一个Github仓库"><span class="nav-number">1.3.</span> <span class="nav-text">新建一个Github仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github仓库同步到本地"><span class="nav-number">2.</span> <span class="nav-text">Github仓库同步到本地</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git的配置"><span class="nav-number">2.1.</span> <span class="nav-text">Git的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-key生成"><span class="nav-number">2.2.</span> <span class="nav-text">SSH key生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加SSH-Key-到Github"><span class="nav-number">2.3.</span> <span class="nav-text">添加SSH Key 到Github</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建Hexo个人博客"><span class="nav-number">3.</span> <span class="nav-text">搭建Hexo个人博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.1.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建关于博客的文件夹"><span class="nav-number">3.2.</span> <span class="nav-text">创建关于博客的文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地查看"><span class="nav-number">3.3.</span> <span class="nav-text">本地查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到github端"><span class="nav-number">3.4.</span> <span class="nav-text">部署到github端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换Next主题"><span class="nav-number">4.</span> <span class="nav-text">更换Next主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#美化博客网站"><span class="nav-number">5.</span> <span class="nav-text">美化博客网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相似度度量"><span class="nav-number">1.</span> <span class="nav-text">相似度度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闵可夫斯基距离"><span class="nav-number">1.1.</span> <span class="nav-text">闵可夫斯基距离</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#欧式距离"><span class="nav-number">1.1.1.</span> <span class="nav-text">欧式距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#曼哈顿距离"><span class="nav-number">1.1.2.</span> <span class="nav-text">曼哈顿距离</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#杰卡德相似性度量"><span class="nav-number">1.2.</span> <span class="nav-text">杰卡德相似性度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#余弦相似度"><span class="nav-number">1.3.</span> <span class="nav-text">余弦相似度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pearson相关系数"><span class="nav-number">1.4.</span> <span class="nav-text">Pearson相关系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对熵"><span class="nav-number">1.5.</span> <span class="nav-text">相对熵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K-means"><span class="nav-number">2.</span> <span class="nav-text">K-means</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">2.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法评价"><span class="nav-number">2.2.</span> <span class="nav-text">算法评价</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K-means-1"><span class="nav-number">3.</span> <span class="nav-text">K-means++</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述-1"><span class="nav-number">3.1.</span> <span class="nav-text">算法描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KNN"><span class="nav-number">4.</span> <span class="nav-text">KNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KNN和K-means区别"><span class="nav-number">5.</span> <span class="nav-text">KNN和K-means区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -956,15 +931,15 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://michelleyang2017.github.io/2018/04/19/Github-Hexo个人博客搭建/';
-          this.page.identifier = '2018/04/19/Github-Hexo个人博客搭建/';
-          this.page.title = 'Github+Hexo个人博客搭建';
+          this.page.url = 'https://michelleyang2017.github.io/2018/05/27/机器学习之聚类算法(K-means)/';
+          this.page.identifier = '2018/05/27/机器学习之聚类算法(K-means)/';
+          this.page.title = '机器学习之聚类算法(K-means)';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://michelle18.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+      </script>
     
 
   
@@ -1009,6 +984,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -4,8 +4,76 @@
 
     
   <url>
+    <loc>https://michelleyang2017.github.io/2018/06/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%81%9A%E7%B1%BB-%E5%AF%86%E5%BA%A6%E8%81%9A%E7%B1%BB/</loc>
+    <lastmod>2018-06-08T13:52:06.918Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之聚类(密度聚类-DBSCAN)</title>
+        <pubTime>2018-06-06T08:57:49.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>聚类</tag>
+         
+        <tag>密度聚类</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/06/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%81%9A%E7%B1%BB-%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB/</loc>
+    <lastmod>2018-06-06T08:56:30.973Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之聚类(层次聚类)</title>
+        <pubTime>2018-06-03T04:47:48.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>聚类，层次聚类</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95(K-means)/</loc>
+    <lastmod>2018-06-01T13:46:46.729Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之聚类算法(K-means)</title>
+        <pubTime>2018-05-27T12:56:37.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>聚类</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://michelleyang2017.github.io/2018/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/</loc>
-    <lastmod>2018-05-31T01:31:47.199Z</lastmod>
+    <lastmod>2018-05-31T11:14:03.450Z</lastmod>
     <data>
         <display>
         <title>机器学习之支持向量机</title>
@@ -14,6 +82,28 @@
         <tag>机器学习</tag>
          
         <tag>支持向量机</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://michelleyang2017.github.io/2018/05/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%B3%E7%AD%96%E6%A0%91/</loc>
+    <lastmod>2018-05-31T10:43:20.747Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习之决策树</title>
+        <pubTime>2018-05-13T13:50:17.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>决策树</tag>
          
          
            
@@ -124,50 +214,6 @@
         <tag>机器学习</tag>
          
         <tag>随机森林</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://michelleyang2017.github.io/2018/05/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2018-05-28T00:29:09.132Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习之聚类算法</title>
-        <pubTime>2018-05-27T12:56:37.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>聚类</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="https://michelleyang2017.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://michelleyang2017.github.io/2018/05/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%86%B3%E7%AD%96%E6%A0%91/</loc>
-    <lastmod>2018-05-28T00:29:04.093Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习之决策树</title>
-        <pubTime>2018-05-13T13:50:17.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>决策树</tag>
          
          
            
